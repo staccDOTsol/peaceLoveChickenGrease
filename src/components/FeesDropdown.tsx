@@ -15,7 +15,7 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
   useEffect(() => {
     const fetchFees = async () => {
       try {
-        const response = await axios.get<Record<string, number>>('https://mempool.space/testnet/api/v1/fees/recommended');
+        const response = await axios.get<Record<string, number>>('https://mempool.space/api/v1/fees/recommended');
         setFees(response.data);
         setLoading(false);
       } catch (error) {
