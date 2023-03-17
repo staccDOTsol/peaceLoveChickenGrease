@@ -67,7 +67,7 @@ export const SendTransaction: FC = () => {
                         Wallet not connected
                         </div>
                          <span className="block group-disabled:hidden" >
-                            Send Transaction
+                            Mint your MMCC Ordinal
                         </span>
                     </button>
              </div>
