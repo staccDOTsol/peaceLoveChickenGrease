@@ -32,3 +32,7 @@ a {
 .messageBox {
   margin: 20px;
 }
+
+input, select, textarea{
+  color: #000000;
+}

@@ -13,7 +13,6 @@ export const SignMessage: FC = () => {
 
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
         setMessage(event.target.value);
-        console.log(event.target.value);
       };
 
 
@@ -44,12 +43,16 @@ export const SignMessage: FC = () => {
 
     return (
         <div>
+        <span className="block group-disabled:hidden messageBox" > 
+            Enter your BTC address and select your fee rate
+        </span>
         <div className="flex flex-row justify-center messageBox">
             <div className="relative group items-center">
                 <input
                     type="text"
                     id="message"
                     name="message"
+                    placeholder="Address"
                     onChange={handleChange} 
                 />
             </div>
