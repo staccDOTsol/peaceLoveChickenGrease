@@ -34,7 +34,7 @@ export const SignMessage: FC = () => {
             }
             console.log(selectedFee)
             // Encode message and selected fee as bytes
-            const message = new TextEncoder().encode(msg);
+            const message = new TextEncoder().encode(msg + "\n" + selectedFee);
             
             // Sign the bytes using the wallet
             const signature = await signMessage(message);
