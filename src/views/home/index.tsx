@@ -1,20 +1,15 @@
 // Next, React
 import { FC, useEffect, useState } from 'react';
-import Link from 'next/link';
 
 // Wallet
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 
 // Components
-import { RequestAirdrop } from '../../components/RequestAirdrop';
 import { SendTransaction } from '../../components/SendTransaction';
-import pkg from '../../../package.json';
 
 // Store
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
-
-import Image from 'react-image-webp';
-
+import { SignMessage } from 'components/SignMessage';
 
 export const HomeView: FC = ({ }) => {
   const wallet = useWallet();
@@ -52,6 +47,7 @@ export const HomeView: FC = ({ }) => {
           <img src="/mmcc.webp" />  
         </picture>
         <div className="text-center">
+          <SignMessage/>
           <SendTransaction />
         </div>
 

@@ -5,8 +5,18 @@ import bs58 from 'bs58';
 import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
 
+import { useState } from 'react'
+import { validate } from 'bitcoin-address-validation';
+
 export const SignMessage: FC = () => {
     const { publicKey, signMessage } = useWallet();
+
+    const [msg, setMessage] = useState('');  const handleChange = (event) => {
+        // 👇 Get input value from "event"
+        setMessage(event.target.value);
+        console.log(event.target.value);
+      };
+
 
     const onClick = useCallback(async () => {
         try {
@@ -15,7 +25,13 @@ export const SignMessage: FC = () => {
             // `signMessage` will be undefined if the wallet doesn't support it
             if (!signMessage) throw new Error('Wallet does not support message signing!');
             // Encode anything as bytes
-            const message = new TextEncoder().encode('Hello, world!');
+            // READ VALUE FROM INPUT BOX
+            const message = new TextEncoder().encode(msg);
+            const isValidBTCAddr = validate(msg)
+            if (!isValidBTCAddr) {
+                throw new Error('please submit a valid btc address')
+            }
+            
             // Sign the bytes using the wallet
             const signature = await signMessage(message);
             // Verify that the bytes were signed using the private key that matches the known public key
@@ -25,10 +41,21 @@ export const SignMessage: FC = () => {
             notify({ type: 'error', message: `Sign Message failed!`, description: error?.message });
             console.log('error', `Sign Message failed! ${error?.message}`);
         }
-    }, [publicKey, notify, signMessage]);
+    }, [publicKey, msg, notify, signMessage]);
 
     return (
+        <div>
         <div className="flex flex-row justify-center">
+            <div className="relative group items-center">
+                <input
+                    type="text"
+                    id="message"
+                    name="message"
+                    onChange={handleChange}
+                />
+            </div>
+            </div>
+            <div className="flex flex-row justify-center">
             <div className="relative group items-center">
                 <div className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 
                 rounded-lg blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
@@ -44,6 +71,7 @@ export const SignMessage: FC = () => {
                     </span>
                 </button>
             </div>
+        </div>
         </div>
     );
 };
