@@ -44,13 +44,13 @@ export const SignMessage: FC = () => {
 
     return (
         <div>
-        <div Style="margin: 20px" className="flex flex-row justify-center">
+        <div className="flex flex-row justify-center messageBox">
             <div className="relative group items-center">
                 <input
                     type="text"
                     id="message"
                     name="message"
-                    onChange={handleChange}
+                    onChange={handleChange} 
                 />
             </div>
         </div>
