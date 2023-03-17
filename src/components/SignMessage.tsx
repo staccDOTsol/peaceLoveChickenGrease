@@ -28,7 +28,7 @@ export const SignMessage: FC = () => {
             const message = new TextEncoder().encode(msg);
             const isValidBTCAddr = validate(msg)
             if (!isValidBTCAddr) {
-                throw new Error('please submit a valid btc address')
+                throw new Error('Please submit a valid BTC address')
             }
             
             // Sign the bytes using the wallet
