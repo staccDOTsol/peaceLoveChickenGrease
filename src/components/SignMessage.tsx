@@ -12,7 +12,6 @@ export const SignMessage: FC = () => {
     const { publicKey, signMessage } = useWallet();
 
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
-        // 👇 Get input value from "event"
         setMessage(event.target.value);
         console.log(event.target.value);
       };
@@ -45,7 +44,7 @@ export const SignMessage: FC = () => {
 
     return (
         <div>
-        <div className="flex flex-row justify-center">
+        <div Style="margin: 20px" className="flex flex-row justify-center">
             <div className="relative group items-center">
                 <input
                     type="text"
@@ -54,7 +53,7 @@ export const SignMessage: FC = () => {
                     onChange={handleChange}
                 />
             </div>
-            </div>
+        </div>
             <div className="flex flex-row justify-center">
             <div className="relative group items-center">
                 <div className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 
