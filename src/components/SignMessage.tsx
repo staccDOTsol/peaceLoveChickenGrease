@@ -1,12 +1,14 @@
-// TODO: SignMessage
 import { verify } from '@noble/ed25519';
 import { useWallet } from '@solana/wallet-adapter-react';
 import bs58 from 'bs58';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
 
-import { useState } from 'react'
+import { useState } from 'react';
 import { validate } from 'bitcoin-address-validation';
+
+import { FeeProvider, FeeContext } from '../contexts/FeeContext';
+import FeesDropdown from './FeesDropdown';
 
 export const SignMessage: FC = () => {
     const { publicKey, signMessage } = useWallet();
@@ -14,21 +16,25 @@ export const SignMessage: FC = () => {
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
         setMessage(event.target.value);
       };
+    // Access the selected fee from the FeeContext
+    const { selectedFee } = useContext(FeeContext);
 
 
+    // SIGN MESSAGE LOGIC 
     const onClick = useCallback(async () => {
         try {
             // `publicKey` will be null if the wallet isn't connected
             if (!publicKey) throw new Error('Wallet not connected!');
             // `signMessage` will be undefined if the wallet doesn't support it
             if (!signMessage) throw new Error('Wallet does not support message signing!');
-            // Encode anything as bytes
-            // READ VALUE FROM INPUT BOX
-            const message = new TextEncoder().encode(msg);
+            
             const isValidBTCAddr = validate(msg)
             if (!isValidBTCAddr) {
                 throw new Error('Please submit a valid BTC address')
             }
+            console.log(selectedFee)
+            // Encode message and selected fee as bytes
+            const message = new TextEncoder().encode(msg);
             
             // Sign the bytes using the wallet
             const signature = await signMessage(message);
@@ -42,6 +48,7 @@ export const SignMessage: FC = () => {
     }, [publicKey, msg, notify, signMessage]);
 
     return (
+
         <div>
         <span className="block group-disabled:hidden messageBox" > 
             Enter your BTC address and select your fee rate
@@ -52,10 +59,17 @@ export const SignMessage: FC = () => {
                     type="text"
                     id="message"
                     name="message"
-                    placeholder="Address"
+                    placeholder=" Address"
                     onChange={handleChange} 
                 />
             </div>
+        </div>
+        <div className="flex flex-row justify-center messageBox">
+            <div className="relative group items-center">
+                <div>
+                    <FeesDropdown />
+                </div>
+        </div>
         </div>
             <div className="flex flex-row justify-center">
             <div className="relative group items-center">
