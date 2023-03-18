@@ -3,12 +3,14 @@ import React, { createContext, useState } from 'react';
 
 interface FeeContextType {
   selectedFee: number | null;
-  setSelectedFee: React.Dispatch<React.SetStateAction<number | null>>;
+  feeSelected: boolean;
+  selectFee: (fee: number) => void;
 }
 
 export const FeeContext = createContext<FeeContextType>({
   selectedFee: null,
-  setSelectedFee: () => {},
+  feeSelected: false,
+  selectFee: () => {},
 });
 
 interface FeeProviderProps {
@@ -17,9 +19,15 @@ interface FeeProviderProps {
 
 export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ children }) => {
   const [selectedFee, setSelectedFee] = useState<number | null>(null);
+  const [feeSelected, setFeeSelected] = useState<boolean>(false);
+
+  const selectFee = (fee: number) => {
+    setSelectedFee(fee);
+    setFeeSelected(true);
+  };
 
   return (
-    <FeeContext.Provider value={{ selectedFee, setSelectedFee }}>
+    <FeeContext.Provider value={{ selectedFee, feeSelected, selectFee }}>
       {children}
     </FeeContext.Provider>
   );

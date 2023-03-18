@@ -50,27 +50,33 @@ export const SignMessage: FC = () => {
     return (
 
         <div>
-        <span className="block group-disabled:hidden messageBox" > 
-            Enter your BTC address and select your fee rate
-        </span>
-        <div className="flex flex-row justify-center messageBox">
-            <div className="relative group items-center">
-                <input
-                    type="text"
-                    id="message"
-                    name="message"
-                    placeholder=" Address"
-                    onChange={handleChange} 
-                />
+        {publicKey &&
+        <div>
+            <span className="block group-disabled:hidden messageBox" >
+                    Enter your BTC address and select your fee rate
+            </span>
+                <div className="flex flex-row justify-center messageBox">
+                    <div className="relative group items-center">
+                        <input
+                            type="text"
+                            id="message"
+                            name="message"
+                            placeholder=" Address"
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-row justify-center messageBox">
+
+                    <div className="relative group items-center">
+                    <div>
+                        <FeesDropdown />
+                    </div>
+                </div>
             </div>
         </div>
-        <div className="flex flex-row justify-center messageBox">
-            <div className="relative group items-center">
-                <div>
-                    <FeesDropdown />
-                </div>
-        </div>
-        </div>
+        }
+
             <div className="flex flex-row justify-center">
             <div className="relative group items-center">
                 <div className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 

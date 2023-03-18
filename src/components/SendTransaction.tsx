@@ -19,6 +19,12 @@ export const SendTransaction: FC = () => {
             return;
         }
 
+        if (!selectedFee){
+            notify({ type: 'error', message: `BTC Fee not selected.` });
+            console.log('error', `Send Transaction: BTC Fee not selected.`);
+            return;
+        }
+
         let signature: TransactionSignature = '';
         try {
 
