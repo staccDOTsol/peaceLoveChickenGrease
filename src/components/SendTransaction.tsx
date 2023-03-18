@@ -1,11 +1,16 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { Keypair, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
+import { FeeContext } from '../contexts/FeeContext';
+
 
 export const SendTransaction: FC = () => {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
+
+    // Access the selected fee from the FeeContext
+    const { selectedFee } = useContext(FeeContext);
 
     const onClick = useCallback(async () => {
         if (!publicKey) {
@@ -59,17 +64,23 @@ export const SendTransaction: FC = () => {
             <div className="relative group items-center">
                 <div className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 
                 rounded-lg blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+
+                {/* if selected fee has been set, render mint button */}
+                {
+                    selectedFee &&
                     <button
                         className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
                         onClick={onClick} disabled={!publicKey}
                     >
-                        <div className="hidden group-disabled:block ">
+                        <div className="hidden group-disabled:hidden ">
                         Wallet not connected
                         </div>
-                         <span className="block group-disabled:hidden" >
+                        <span className="block group-disabled:hidden" >
                             Mint your MMCC Ordinal
                         </span>
+
                     </button>
+                }
              </div>
         </div>
     );

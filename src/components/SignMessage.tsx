@@ -7,7 +7,7 @@ import { notify } from "../utils/notifications";
 import { useState } from 'react';
 import { validate } from 'bitcoin-address-validation';
 
-import { FeeProvider, FeeContext } from '../contexts/FeeContext';
+import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
 
 export const SignMessage: FC = () => {
