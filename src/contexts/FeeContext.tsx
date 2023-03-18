@@ -1,9 +1,9 @@
 import React, { createContext, useState, useMemo } from 'react';
 
 interface FeeContextType {
-  selectedFee: number | null;
+  selectedFee: any | null;
   feeConfirmed: boolean;
-  selectFee: (fee: number) => void;
+  selectFee: (fee: any) => void;
   setFeeConfirmed: (confirmed: boolean) => void;
 }
 
@@ -19,10 +19,10 @@ interface FeeProviderProps {
 }
 
 export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ children }) => {
-  const [selectedFee, setSelectedFee] = useState<number | null>(null);
+  const [selectedFee, setSelectedFee] = useState<any>(null);
   const [feeConfirmed, setFeeConfirmed] = useState<boolean>(false);
 
-  const selectFee = (fee: number) => {
+  const selectFee = (fee: any) => {
     setSelectedFee(fee);
   };
 

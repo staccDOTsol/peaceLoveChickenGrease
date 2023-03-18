@@ -13,9 +13,7 @@ const Home: NextPage = (props) => {
           content="Meerkat Millionaires Country Club - Ordinals"
         />
       </Head>
-      <FeeProvider>
       <HomeView />
-      </FeeProvider>
     </div>
   );
 };

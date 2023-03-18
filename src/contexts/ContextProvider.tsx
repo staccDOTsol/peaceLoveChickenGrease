@@ -15,6 +15,7 @@ import { AutoConnectProvider, useAutoConnect } from './AutoConnectProvider';
 import { notify } from "../utils/notifications";
 import { NetworkConfigurationProvider, useNetworkConfiguration } from './NetworkConfigurationProvider';
 import dynamic from "next/dynamic";
+import { FeeProvider } from './FeeContext';
 
 const ReactUIWalletModalProviderDynamic = dynamic(
   async () =>
@@ -55,9 +56,10 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
         // TODO: updates needed for updating and referencing endpoint: wallet adapter rework
         <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={wallets} onError={onError} autoConnect={autoConnect}>
-                <ReactUIWalletModalProviderDynamic>
+                
+      <FeeProvider><ReactUIWalletModalProviderDynamic>
                     {children}
-                </ReactUIWalletModalProviderDynamic>
+                </ReactUIWalletModalProviderDynamic></FeeProvider>
 			</WalletProvider>
         </ConnectionProvider>
     );

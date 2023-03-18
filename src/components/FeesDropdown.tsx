@@ -30,6 +30,7 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = parseInt(event.target.value, 10);
+    console.log(event.target.value)
     console.log("selected fee in fees dropdown", selectedValue)
     selectFee(selectedValue); // Use the selectFee function instead of setSelectedFee
   };
