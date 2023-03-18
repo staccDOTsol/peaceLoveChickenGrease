@@ -11,6 +11,7 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
   const [fees, setFees] = useState<Record<string, number> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const { selectFee } = useContext(FeeContext);
+  const { selectedFee } = useContext(FeeContext);
 
   useEffect(() => {
     const fetchFees = async () => {
@@ -29,7 +30,9 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = parseInt(event.target.value, 10);
+    console.log("selected fee in fees dropdown", selectedValue)
     selectFee(selectedValue); // Use the selectFee function instead of setSelectedFee
+    console.log("selected fee saved to state:", selectedFee)
   };
 
   if (loading) {
