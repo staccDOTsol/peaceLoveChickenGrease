@@ -45,7 +45,7 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
 
   return (
     <select onChange={handleChange}>
-      <option value="">Select a fee</option>
+      <option value="">Select a fee for your delivery</option>
       {Object.entries(fees).map(([key, value]) => (
         <option key={key} value={value}>
           {key}: {value} sat/vB

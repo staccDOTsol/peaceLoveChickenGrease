@@ -1,5 +1,5 @@
 // Next, React
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 // Wallet
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
@@ -12,7 +12,24 @@ import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import { FeeProvider } from 'contexts/FeeContext';
 import { SignMessage } from 'components/SignMessage';
 
+
 export const HomeView: FC = ({ }) => {
+
+  const videoEl = useRef(null);
+
+  const attemptPlay = () => {
+    videoEl &&
+      videoEl.current &&
+      videoEl.current.play().catch(error => {
+        console.error("Error attempting to play", error);
+      });
+  };
+
+  useEffect(() => {
+    attemptPlay();
+  }, []);
+
+
   const wallet = useWallet();
   const { connection } = useConnection();
 
@@ -30,40 +47,35 @@ export const HomeView: FC = ({ }) => {
 
     <div className="md:hero mx-auto p-4">
       <div className="md:hero-content flex flex-col">
-        <div className='mt-6'>
+        <div>
         <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-fuchsia-100 mb-4">
           Meerkat Millionaires Country Club
         </h1>
-        </div>
+        {/* </div>
+        <div> */}
+              <h4 className="text-2x1 md:text-2xl text-center text-slate-300 my-2">
+                <p>Pay to mint on Solana, receive your ordinal on BTC</p>
+              </h4>
+            </div>
         <div className="flex flex-col mt-2 center-items">
-        {/* CONTENT GOES HERE */}
-        <center>
-        <div>
-          <picture>
-            <source srcSet="/mmcc.webp" />
-            <img src="/mmcc.webp" />
-          </picture>
-        </div>
-        <div>
-        <h4 className="text-2x1 md:text-2xl text-center text-slate-300 my-2">
-          <p>Pay to mint on Solana, receive your ordinal on BTC</p>
-        </h4>
-        </div>
-        <div className="text-center">
-          <SignMessage />
-          <SendTransaction />
-        </div>
-        </center>
-
-          <h4 className="md:w-full text-2xl text-slate-300 my-2">
-          {wallet &&
-          <div className="flex flex-row justify-center">
-              <h4 className="md:w-full text-2x1 md:text-4xl text-center text-slate-300 my-2 mt-16">
-          <p className='text-slate-500 text-2x1 leading-relaxed'>BRRRBRRR</p>
-        </h4>
+          {/* CONTENT GOES HERE */}
+          <center>
+          <div>
+          <video
+            style={{ maxWidth: "100%", width: "320px", margin: "0 auto" }}
+            playsInline
+            loop
+            muted
+            controls={false}
+            src="../collection.mp4"
+            ref={videoEl}
+        />
           </div>
-          }
-          </h4>
+          <div className="text-center mt-4">
+            <SignMessage />
+            <SendTransaction />
+          </div>
+          </center>
         </div>
       </div>
     </div>

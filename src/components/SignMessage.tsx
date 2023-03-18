@@ -56,49 +56,49 @@ export const SignMessage: FC = () => {
 
         <div>
         {publicKey &&
-        <div>
-
-            {selectedFee &&
             <div>
-            <span className="block group-disabled:hidden messageBox" >
-                    Enter your BTC address and select your fee rate
-            </span>
-                <div className="flex flex-row justify-center messageBox">
-                    <div className="relative group items-center">
-                        <input
-                            type="text"
-                            id="message"
-                            name="message"
-                            placeholder=" Address"
-                            onChange={handleChange}
-                        />
+                {!selectedFee &&
+                <div>
+                    <span className="block group-disabled:hidden messageBox" >
+                            Enter your BTC address and select your fee rate
+                    </span>
+                    <div className="flex flex-row justify-center messageBox">
+                        <div className="relative group items-center">
+                            <input
+                                type="text"
+                                id="message"
+                                name="message"
+                                placeholder=" BTC Delivery Address "
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                </div></div>}
-            {!selectedFee &&
-                <div className="flex flex-row justify-center messageBox">
-                    <div className="relative group items-center">
-                    <div>
-                        <FeesDropdown />
+                </div>}
+                {!selectedFee &&
+                    <div className="flex flex-row justify-center messageBox">
+                        <div className="relative group items-center">
+                        <div>
+                            <FeesDropdown />
+                        </div>
                     </div>
                 </div>
+    }
             </div>
-}
-        </div>
         }
 
             <div className="flex flex-row justify-center">
             <div className="relative group items-center">
-                <div className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 
+                <div className="m-1 absolute -inset-0.5 bg-gradient-to-r from-green-500 to-white-500 
                 rounded-lg blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
                 <button
-                    className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
+                    className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-green-500 to-white-500 hover:from-white hover:to-purple-300 text-black"
                     onClick={onClick} disabled={!publicKey}
                 >
                     <div className="hidden group-disabled:block">
                         Wallet not connected
                     </div>
                     <span className="block group-disabled:hidden" > 
-                        Sign Message 
+                        <p className={"text-white"}>Sign Message</p> 
                     </span>
                 </button>
             </div>

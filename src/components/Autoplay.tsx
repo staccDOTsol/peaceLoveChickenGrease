@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import "./styles.css";
+// import "./styles.css";
 
-export default function App() {
+export default function Autoplay() {
   const videoEl = useRef(null);
 
   const attemptPlay = () => {
@@ -17,8 +17,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Autoplay example</h1>
+    <div>
       <div>
         <video
           style={{ maxWidth: "100%", width: "800px", margin: "0 auto" }}
@@ -26,7 +25,7 @@ export default function App() {
           loop
           muted
           controls
-          src="https://stream.mux.com/6fiGM5ChLz8T66ZZiuzk1KZuIKX8zJz00/medium.mp4"
+          src="./collection.mp4"
           ref={videoEl}
         />
       </div>
