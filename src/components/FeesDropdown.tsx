@@ -32,7 +32,6 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
     const selectedValue = parseInt(event.target.value, 10);
     console.log("selected fee in fees dropdown", selectedValue)
     selectFee(selectedValue); // Use the selectFee function instead of setSelectedFee
-    console.log("selected fee saved to state:", selectedFee)
   };
 
   if (loading) {

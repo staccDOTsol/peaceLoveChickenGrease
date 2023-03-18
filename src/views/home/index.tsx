@@ -47,12 +47,10 @@ export const HomeView: FC = ({ }) => {
           <source srcSet="/mmcc.webp" />
           <img src="/mmcc.webp" />  
         </picture>
-        <FeeProvider>
         <div className="text-center">
           <SignMessage/>
           <SendTransaction />
         </div>
-        </FeeProvider>
 
           <h4 className="md:w-full text-2xl text-slate-300 my-2">
           {wallet &&

@@ -42,6 +42,8 @@ export const SignMessage: FC = () => {
             // Verify that the bytes were signed using the private key that matches the known public key
             if (!verify(signature, message, publicKey.toBytes())) throw new Error('Invalid signature!');
             notify({ type: 'success', message: 'Sign message successful!', txid: bs58.encode(signature) });
+            console.log("selected fee saved to state:", selectedFee)
+
             setFeeConfirmed(true); // Use the selectFee function instead of setSelectedFee
         } catch (error: any) {
             notify({ type: 'error', message: `Sign Message failed!`, description: error?.message });
