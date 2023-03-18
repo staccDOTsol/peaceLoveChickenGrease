@@ -35,32 +35,32 @@ export const HomeView: FC = ({ }) => {
           Meerkat Millionaires Country Club
         </h1>
         </div>
-        <h4 className="md:w-full text-2x1 md:text-4xl text-center text-slate-300 my-2">
-          <p>Mint on Solana, receive an ordinal on BTC.</p>
-        </h4>
-        <div className="flex flex-col mt-2">
-        <h4 className="md:w-full text-2x1 md:text-4xl text-center text-slate-300 my-2">
-          <p className='text-slate-500 text-2x1 leading-relaxed'>BRRRBRRR</p>
-        </h4>
+        <div className="flex flex-col mt-2 center-items">
         {/* CONTENT GOES HERE */}
-        <picture>
-          <source srcSet="/mmcc.webp" />
-          <img src="/mmcc.webp" />  
-        </picture>
+        <center>
+        <div>
+          <picture>
+            <source srcSet="/mmcc.webp" />
+            <img src="/mmcc.webp" />
+          </picture>
+        </div>
+        <div>
+        <h4 className="text-2x1 md:text-2xl text-center text-slate-300 my-2">
+          <p>Pay to mint on Solana, receive your ordinal on BTC</p>
+        </h4>
+        </div>
         <div className="text-center">
           <SignMessage />
           <SendTransaction />
         </div>
+        </center>
 
           <h4 className="md:w-full text-2xl text-slate-300 my-2">
           {wallet &&
           <div className="flex flex-row justify-center">
-            <div>
-              {(balance || 0).toLocaleString()}
-              </div>
-              <div className='text-slate-600 ml-2'>
-                SOL
-              </div>
+              <h4 className="md:w-full text-2x1 md:text-4xl text-center text-slate-300 my-2 mt-16">
+          <p className='text-slate-500 text-2x1 leading-relaxed'>BRRRBRRR</p>
+        </h4>
           </div>
           }
           </h4>
