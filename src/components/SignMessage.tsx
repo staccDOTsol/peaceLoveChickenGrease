@@ -10,6 +10,7 @@ import { validate } from 'bitcoin-address-validation';
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
 
+
 export const SignMessage: FC = () => {
     const { publicKey, signMessage } = useWallet();
 
@@ -18,7 +19,7 @@ export const SignMessage: FC = () => {
       };
     // Access the selected fee from the FeeContext
     const { selectedFee } = useContext(FeeContext);
-
+    const { setFeeConfirmed } = useContext(FeeContext);
 
     // SIGN MESSAGE LOGIC 
     const onClick = useCallback(async () => {
@@ -41,6 +42,7 @@ export const SignMessage: FC = () => {
             // Verify that the bytes were signed using the private key that matches the known public key
             if (!verify(signature, message, publicKey.toBytes())) throw new Error('Invalid signature!');
             notify({ type: 'success', message: 'Sign message successful!', txid: bs58.encode(signature) });
+            setFeeConfirmed(true); // Use the selectFee function instead of setSelectedFee
         } catch (error: any) {
             notify({ type: 'error', message: `Sign Message failed!`, description: error?.message });
             console.log('error', `Sign Message failed! ${error?.message}`);
@@ -67,7 +69,6 @@ export const SignMessage: FC = () => {
                     </div>
                 </div>
                 <div className="flex flex-row justify-center messageBox">
-
                     <div className="relative group items-center">
                     <div>
                         <FeesDropdown />

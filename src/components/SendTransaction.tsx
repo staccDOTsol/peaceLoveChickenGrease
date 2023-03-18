@@ -10,7 +10,7 @@ export const SendTransaction: FC = () => {
     const { publicKey, sendTransaction } = useWallet();
 
     // Access the selected fee from the FeeContext
-    const { selectedFee } = useContext(FeeContext);
+    const { feeConfirmed } = useContext(FeeContext);
 
     const onClick = useCallback(async () => {
         if (!publicKey) {
@@ -19,7 +19,7 @@ export const SendTransaction: FC = () => {
             return;
         }
 
-        if (!selectedFee){
+        if (!feeConfirmed) {
             notify({ type: 'error', message: `BTC Fee not selected.` });
             console.log('error', `Send Transaction: BTC Fee not selected.`);
             return;
@@ -73,7 +73,7 @@ export const SendTransaction: FC = () => {
 
                 {/* if selected fee has been set, render mint button */}
                 {
-                    selectedFee &&
+                    feeConfirmed &&
                     <button
                         className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
                         onClick={onClick} disabled={!publicKey}
