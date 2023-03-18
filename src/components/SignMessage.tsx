@@ -9,7 +9,7 @@ import { validate } from 'bitcoin-address-validation';
 
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
-import { wordlists } from 'bip39';
+// import { wordlists } from 'bip39';
 
 
 export const SignMessage: FC = () => {
