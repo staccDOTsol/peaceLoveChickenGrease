@@ -1,5 +1,4 @@
-// FeeContext.tsx
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 interface FeeContextType {
   selectedFee: number | null;
@@ -31,8 +30,15 @@ export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ childre
     setFeeConfirmed(confirmed);
   };
 
+  const value = useMemo(() => ({
+    selectedFee,
+    feeConfirmed,
+    selectFee,
+    setFeeConfirmed: updateFeeConfirmed
+  }), [selectedFee, feeConfirmed]);
+
   return (
-    <FeeContext.Provider value={{ selectedFee, feeConfirmed, selectFee, setFeeConfirmed: updateFeeConfirmed }}>
+    <FeeContext.Provider value={value}>
       {children}
     </FeeContext.Provider>
   );

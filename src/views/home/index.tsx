@@ -48,7 +48,7 @@ export const HomeView: FC = ({ }) => {
           <img src="/mmcc.webp" />  
         </picture>
         <div className="text-center">
-          <SignMessage/>
+          <SignMessage />
           <SendTransaction />
         </div>
 
