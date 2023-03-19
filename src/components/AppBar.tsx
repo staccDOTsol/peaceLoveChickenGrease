@@ -30,7 +30,10 @@ export const AppBar: React.FC = () => {
               </div>
             </Link>
           </div>
-          <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg " />
+          {/* <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg " /> */}
+          <section className="btn-ghost relative flex md:hidden text-lg md:hidden m-10">
+                  <img src="../../logoWhite.png" width={"80px"} />
+                </section>
         </div>
 
         {/* Nav Links */}
@@ -49,22 +52,7 @@ export const AppBar: React.FC = () => {
           /> */}
           <WalletMultiButtonDynamic className="btn-ghost btn-sm rounded-btn text-lg mr-6 " />
         </div>
-          <label
-              htmlFor="my-drawer"
-              className="btn-gh items-center justify-between md:hidden mr-6"
-              onClick={() => setIsNavOpen(!isNavOpen)}>
-              <div className="HAMBURGER-ICON space-y-2.5 ml-5">
-              <div className={`h-0.5 w-8 bg-purple-600 ${isNavOpen ? 'hidden' : ''}`} />
-              <div className={`h-0.5 w-8 bg-purple-600 ${isNavOpen ? 'hidden' : ''}`} />
-              <div className={`h-0.5 w-8 bg-purple-600 ${isNavOpen ? 'hidden' : ''}`} />
-            </div>
-            <div className={`absolute block h-0.5 w-8 animate-pulse bg-purple-600 ${isNavOpen ? "" : "hidden"}`}
-              style={{ transform: "rotate(45deg)" }}>
-            </div>
-            <div className={`absolute block h-0.5 w-8 animate-pulse bg-purple-600 ${isNavOpen ? "" : "hidden"}`}
-              style={{ transform: "rotate(135deg)" }}>
-            </div>
-        </label>
+        <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg mr-2" />
       <div>
         <span className="absolute block h-0.5 w-12 bg-zinc-600 rotate-90 right-14"></span>
       </div>
