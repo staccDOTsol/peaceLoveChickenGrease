@@ -1,3 +1,4 @@
+import { useLocalStorage } from '@solana/wallet-adapter-react';
 import React, { createContext, useState, useMemo } from 'react';
 
 interface FeeContextType {
@@ -19,8 +20,9 @@ interface FeeProviderProps {
 }
 
 export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ children }) => {
-  const [selectedFee, setSelectedFee] = useState<any>(null);
-  const [feeConfirmed, setFeeConfirmed] = useState<boolean>(false);
+  const [selectedFee, setSelectedFee] = useLocalStorage('fee', 5)
+  const [feeConfirmed, setFeeConfirmed] = useLocalStorage('feeConfirmed', false)
+
 
   const selectFee = (fee: any) => {
     setSelectedFee(fee);

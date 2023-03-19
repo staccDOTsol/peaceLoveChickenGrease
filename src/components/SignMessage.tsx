@@ -5,7 +5,7 @@ import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
 
 import { useState } from 'react';
-import { validate } from 'bitcoin-address-validation';
+import * as BTON from '@cmdcode/bton';
 
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
@@ -14,7 +14,15 @@ import FeesDropdown from './FeesDropdown';
 
 export const SignMessage: FC = () => {
     const { publicKey, signMessage } = useWallet();
-
+    function validate( address ) {
+        try {
+            BTON.Tap.decodeAddress( address ).toString() // throws if invalid
+            return true;
+        } catch( e ) {
+            console.log(e)
+        }
+        return;
+    }
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
         setMessage(event.target.value);
       };

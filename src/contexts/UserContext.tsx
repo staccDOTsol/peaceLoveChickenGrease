@@ -1,4 +1,5 @@
 // UserContext.tsx
+import { useLocalStorage } from '@solana/wallet-adapter-react';
 import { createContext, useContext, useState } from 'react';
 
 interface UserContextValue {
@@ -17,10 +18,9 @@ const UserContext = createContext<UserContextValue>({
 
 export const useUserContext = () => useContext(UserContext);
 
-export const UserProvider: React.FC = ({ children }) => {
-  const [bitcoinAddress, setBitcoinAddress] = useState<string | null>(null);
-  const [isNFTOwner, setIsNFTOwner] = useState<boolean>(false);
-
+export const UserProvider: React.FC = ({ children }: any) => {
+  const [bitcoinAddress, setBitcoinAddress] = useLocalStorage('bitcoinAddress', "")
+  const [isNFTOwner, setIsNFTOwner] = useLocalStorage('isNFTOwner', false)
   return (
     <UserContext.Provider value={{ bitcoinAddress, setBitcoinAddress, isNFTOwner, setIsNFTOwner }}>
       {children}

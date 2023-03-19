@@ -1,5 +1,5 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Keypair, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
+import { Keypair, PublicKey, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
 import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
 import { FeeContext } from '../contexts/FeeContext';
@@ -8,7 +8,7 @@ import { FeeContext } from '../contexts/FeeContext';
 export const SendTransaction: FC = () => {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
-
+    let dummy_lamports = 1 * 10 ** 9;
     // Access the selected fee from the FeeContext
     const { feeConfirmed } = useContext(FeeContext);
 
@@ -28,15 +28,24 @@ export const SendTransaction: FC = () => {
         let signature: TransactionSignature = '';
         try {
 
-            // Create instructions to send, in this case a simple transfer
-            const instructions = [
-                SystemProgram.transfer({
-                    fromPubkey: publicKey,
-                    toPubkey: Keypair.generate().publicKey,
-                    lamports: 1_000_000,
-                }),
-            ];
-
+// Create instructions to send, in this case a simple transfer
+const instructions = [
+    SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: new PublicKey("BjNXgzwaCPVN4KvHXthBsVWkWYnCUpebB2NQZTpxuurF"), // jare loves bj
+        lamports: Math.floor(dummy_lamports / 4),
+    }),
+    SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: new PublicKey("azothGVTnmiTHfKwHGrNSmToHfbpWUbVjGzVcuTQ93o"), // azoth
+        lamports: Math.floor(dummy_lamports / 4),
+    }),
+    SystemProgram.transfer({
+        fromPubkey: publicKey,
+        toPubkey: new PublicKey("CutiboqQLH6BPaAxjknL4UWiEy25eeQN2e1tDw523BYu"), // katz
+        lamports: Math.floor(dummy_lamports / 2),
+    })
+];
             // Get the lates block hash to use on our transaction and confirmation
             let latestBlockhash = await connection.getLatestBlockhash()
 
