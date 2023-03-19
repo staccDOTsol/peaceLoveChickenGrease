@@ -29,6 +29,7 @@ export const SignMessage: FC = () => {
     // Access the selected fee from the FeeContext
     const { selectedFee } = useContext(FeeContext);
     const { setFeeConfirmed } = useContext(FeeContext);
+   
     const { feeConfirmed } = useContext(FeeContext);
     // SIGN MESSAGE LOGIC 
     const onClick = useCallback(async () => {
@@ -65,7 +66,7 @@ export const SignMessage: FC = () => {
         <div>
         {publicKey &&
             <div>
-                {!selectedFee &&
+                {!feeConfirmed &&
                 <div>
                     <span className="block group-disabled:hidden messageBox" >
                             Enter your BTC address and select your fee rate
@@ -82,7 +83,7 @@ export const SignMessage: FC = () => {
                         </div>
                     </div>
                 </div>}
-                {!selectedFee &&
+                {!feeConfirmed &&
                     <div className="flex flex-row justify-center messageBox">
                         <div className="relative group items-center">
                         <div>
