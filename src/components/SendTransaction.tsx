@@ -1,6 +1,6 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
-import { FC, useCallback, useContext } from 'react';
+import { FC, useCallback, useContext, useEffect } from 'react';
 import { notify } from "../utils/notifications";
 import { FeeContext } from '../contexts/FeeContext';
 import * as anchor from '@coral-xyz/anchor'
@@ -12,9 +12,10 @@ export const SendTransaction: FC = () => {
    const wallet = useWallet()
    const {selectedFee} = useContext(FeeContext);
    let dummy_lamports = 2 * 10 ** 9;
+   let {isNFTOwner} = useUserContext ();
     useEffect(() => {
    calculateTransactionCostInSol(selectedFee).then((totalTransactionCostInSol) => {
-   let {isNFTOwner} = useUserContext ();
+   
    if (isNFTOwner) {
          dummy_lamports = (totalTransactionCostInSol + 0.5) * 10 ** 9;
     } else {
