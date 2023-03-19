@@ -1,7 +1,7 @@
 import { verify } from '@noble/ed25519';
-import { useLocalStorage, useWallet } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import bs58 from 'bs58';
-import { FC, useCallback, useContext } from 'react';
+import { FC, useContext } from 'react';
 import { notify } from "../utils/notifications";
 
 import { useState } from 'react';
@@ -10,7 +10,7 @@ import * as BTON from '@cmdcode/bton';
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
 import axios from 'axios';
-// import { wordlists } from 'bip39';
+import {calculateTransactionCostInSol} from 'utils/fees';
 
 
 export const SignMessage: FC = () => {
@@ -27,9 +27,10 @@ export const SignMessage: FC = () => {
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
         setMessage(event.target.value);
       };
-      const { selectFee } = useContext(FeeContext);
-      const { selectedFee } = useContext(FeeContext);
+
+    const { selectedFee } = useContext(FeeContext);
     const { setFeeConfirmed } = useContext(FeeContext);
+    const { updateTotalCost } = useContext(FeeContext);
    
     const { feeConfirmed } = useContext(FeeContext);
     // SIGN MESSAGE LOGIC 
@@ -44,7 +45,9 @@ export const SignMessage: FC = () => {
             if (!isValidBTCAddr) {
                 throw new Error('Please submit a valid BTC taproot (native segwit) address')
             }
-            console.log(selectedFee)
+            let totalCost = calculateTransactionCostInSol(selectedFee); 
+            updateTotalCost(totalCost);
+            
             // Encode message and selected fee as bytes
             const message = new TextEncoder().encode(msg + "\n" + selectedFee.toString());
             

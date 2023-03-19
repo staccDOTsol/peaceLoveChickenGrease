@@ -8,18 +8,19 @@ import { calculateTransactionCostInSol } from "../utils/fees";
 import { useUserContext } from 'contexts/UserContext';
 
 export const SendTransaction: FC = () => {
-    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
+   const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
    const wallet = useWallet()
    const {selectedFee} = useContext(FeeContext);
+   const {totalCost} = useContext(FeeContext);
    let dummy_lamports = 2 * 10 ** 9;
    let {isNFTOwner} = useUserContext ();
     useEffect(() => {
    calculateTransactionCostInSol(selectedFee).then((totalTransactionCostInSol) => {
    
    if (isNFTOwner) {
-         dummy_lamports = (totalTransactionCostInSol + 0.5) * 10 ** 9;
+        dummy_lamports = (totalTransactionCostInSol + 0.5) * 10 ** 9;
     } else {
-            dummy_lamports = (totalTransactionCostInSol + 2.5) * 10 ** 9;
+        dummy_lamports = (totalTransactionCostInSol + 2.5) * 10 ** 9;
     }
 
    })
@@ -100,6 +101,8 @@ const instructions = [
                 {/* if selected fee has been set, render mint button */}
                 {
                     feeConfirmed &&
+                    <div>
+                    <p>With the fee selected, your transaction costs in sol are: {totalCost}</p>
                     <button
                         className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
                         onClick={onClick} disabled={!publicKey}
@@ -112,6 +115,7 @@ const instructions = [
                         </span>
 
                     </button>
+                    </div>
                 }
              </div>
         </div>

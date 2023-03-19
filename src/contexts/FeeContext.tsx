@@ -1,18 +1,24 @@
-import { useLocalStorage } from '@solana/wallet-adapter-react';
+
 import React, { createContext, useState, useMemo } from 'react';
 
 interface FeeContextType {
   selectedFee: any | null;
   feeConfirmed: boolean;
+  totalCost: number;
   selectFee: (fee: any) => void;
   setFeeConfirmed: (confirmed: boolean) => void;
+  setTotalCost: (fee: any) => void;
+  updateTotalCost: (fee: any) => void;
 }
 
 export const FeeContext = createContext<FeeContextType>({
   selectedFee: null,
+  totalCost: null,
   feeConfirmed: false,
   selectFee: () => {},
   setFeeConfirmed: () => {},
+  setTotalCost: () => {},
+  updateTotalCost: () => {},
 });
 
 interface FeeProviderProps {
@@ -21,6 +27,7 @@ interface FeeProviderProps {
 
 export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ children }) => {
   const [selectedFee, setSelectedFee] = useState<any | null>(null);
+  const [totalCost, setTotalCost] = useState<any | null>(null);
   const [feeConfirmed, setFeeConfirmed] =useState(false)
 
 
@@ -32,12 +39,19 @@ export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ childre
     setFeeConfirmed(confirmed);
   };
 
+  const updateTotalCost = (fee: number) => {
+    setTotalCost(fee);
+  };
+
+
   const value = useMemo(() => ({
+    totalCost,
     selectedFee,
     feeConfirmed,
     selectFee,
-    setFeeConfirmed: updateFeeConfirmed
-  }), [selectedFee, feeConfirmed]);
+    setFeeConfirmed: updateFeeConfirmed,
+    setTotalCost: updateTotalCost
+  }), [selectedFee, feeConfirmed, totalCost]);
 
   return (
     <FeeContext.Provider value={value}>
