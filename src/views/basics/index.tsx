@@ -17,7 +17,7 @@ export const BasicsView: FC = ({ }) => {
   const { connected } = useWallet();
 
     const wallet = useWallet();
-    const { connection } = useConnection();
+    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
     const metaplex = new Metaplex(new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f"))
     useEffect(() => {
 

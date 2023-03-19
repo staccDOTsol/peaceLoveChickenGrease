@@ -1,10 +1,10 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Keypair, SystemProgram, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
+import { Connection, Keypair, SystemProgram, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
 import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
 
 export const SendVersionedTransaction: FC = () => {
-    const { connection } = useConnection();
+    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
     const { publicKey, sendTransaction } = useWallet();
 
     const onClick = useCallback(async () => {

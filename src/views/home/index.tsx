@@ -11,6 +11,7 @@ import { SendTransaction } from '../../components/SendTransaction';
 import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
 import { FeeProvider } from 'contexts/FeeContext';
 import { SignMessage } from 'components/SignMessage';
+import { Connection } from '@solana/web3.js';
 
 
 export const HomeView: FC = ({ }) => {
@@ -31,7 +32,7 @@ export const HomeView: FC = ({ }) => {
 
 
   const wallet = useWallet();
-  const { connection } = useConnection();
+  const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
 
   const balance = useUserSOLBalanceStore((s) => s.balance)
   const { getUserSOLBalance } = useUserSOLBalanceStore()

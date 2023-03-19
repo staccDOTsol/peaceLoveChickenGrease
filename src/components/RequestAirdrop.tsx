@@ -1,11 +1,11 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { LAMPORTS_PER_SOL, TransactionSignature } from '@solana/web3.js';
+import { Connection, LAMPORTS_PER_SOL, TransactionSignature } from '@solana/web3.js';
 import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
 import useUserSOLBalanceStore from '../stores/useUserSOLBalanceStore';
 
 export const RequestAirdrop: FC = () => {
-    const { connection } = useConnection();
+    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
     const { publicKey } = useWallet();
     const { getUserSOLBalance } = useUserSOLBalanceStore();
 

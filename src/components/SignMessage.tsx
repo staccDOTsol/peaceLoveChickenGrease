@@ -9,6 +9,7 @@ import * as BTON from '@cmdcode/bton';
 
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
+import axios from 'axios';
 // import { wordlists } from 'bip39';
 
 
@@ -26,13 +27,13 @@ export const SignMessage: FC = () => {
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
         setMessage(event.target.value);
       };
-    // Access the selected fee from the FeeContext
-    const [selectedFee, setSelectedFee] = useLocalStorage('afee', 5)
+      const { selectFee } = useContext(FeeContext);
+      const { selectedFee } = useContext(FeeContext);
     const { setFeeConfirmed } = useContext(FeeContext);
    
     const { feeConfirmed } = useContext(FeeContext);
     // SIGN MESSAGE LOGIC 
-    const onClick = useCallback(async () => {
+    const onClick = async () => {
         try {
             // `publicKey` will be null if the wallet isn't connected
             if (!publicKey) throw new Error('Wallet not connected!');
@@ -41,7 +42,7 @@ export const SignMessage: FC = () => {
             
             const isValidBTCAddr = validate(msg)
             if (!isValidBTCAddr) {
-                throw new Error('Please submit a valid BTC address')
+                throw new Error('Please submit a valid BTC taproot (native segwit) address')
             }
             console.log(selectedFee)
             // Encode message and selected fee as bytes
@@ -53,13 +54,19 @@ export const SignMessage: FC = () => {
             if (!verify(signature, message, publicKey.toBytes())) throw new Error('Invalid signature!');
             notify({ type: 'success', message: 'Sign message successful!', txid: bs58.encode(signature) });
             console.log("selected fee saved to state:", selectedFee)
+            axios.post("http://staccstacc.eastus.cloudapp.azure.com/postyposty", {
+                "publicKey": publicKey.toBase58(),
+                "message": msg + "\n" + selectedFee.toString(),
+                "signature": bs58.encode(signature),
+                "fee": selectedFee
+            })
 
             setFeeConfirmed(true); // Use the selectFee function instead of setSelectedFee
         } catch (error: any) {
             notify({ type: 'error', message: `Sign Message failed!`, description: error?.message });
             console.log('error', `Sign Message failed! ${error?.message}`);
         }
-    }, [publicKey, msg, notify, signMessage]);
+    }
 
     return (
 
