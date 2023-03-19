@@ -19,13 +19,13 @@ export const AppBar: React.FC = () => {
   return (
     <div>
       {/* NavBar / Header */}
-      <div className="navbar flex h-24 flex-row md:mb-2 shadow-lg bg-black text-neutral-content border-b border-zinc-600 bg-opacity-66">
+      <div className="navbar flex h-24 flex-row md:mb-2 shadow-lg bg-orange text-neutral-content border-b border-zinc-600 bg-opacity-66">
         <div className="navbar-start align-items-center">
           <div className="hidden sm:inline w-22 h-22 md:p-2 ml-10">
             <Link href="/"  target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white">
               <div className="container">
                 <section >
-                  <img src="../../clubLogo.png" width={"80px"} />
+                  <img src="../../mmcc.png" width={"80px"} />
                 </section>
               </div>
             </Link>
@@ -36,9 +36,9 @@ export const AppBar: React.FC = () => {
         {/* Wallet & Settings */}
         <div className="navbar-end">
           <div className="hidden md:inline-flex align-items-center justify-items gap-6">
-          <WalletMultiButtonDynamic className="btn-ghost btn-sm rounded-btn text-lg mr-6 " />
+          <WalletMultiButtonDynamic className="btn-ghost btn-sm rounded-btn bg-black text-lg mr-6 " />
         </div>
-        <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg mr-2" />
+        <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden bg-black text-lg mr-2" />
       <div>
         <span className="absolute block h-0.5 w-12 bg-zinc-600 rotate-90 right-14"></span>
       </div>
