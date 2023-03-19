@@ -20,7 +20,7 @@ interface FeeProviderProps {
 }
 
 export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ children }) => {
-  const [selectedFee, setSelectedFee] = useLocalStorage('afee', 5)
+  const [selectedFee, setSelectedFee] = useState<any | null>(null);
   const [feeConfirmed, setFeeConfirmed] =useState(false)
 if (feeConfirmed) {
   setSelectedFee(null)

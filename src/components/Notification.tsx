@@ -9,6 +9,7 @@ import useNotificationStore from '../stores/useNotificationStore'
 import { useConnection } from '@solana/wallet-adapter-react';
 import { getExplorerUrl } from '../utils/explorer'
 import { useNetworkConfiguration } from 'contexts/NetworkConfigurationProvider';
+import { Connection } from '@solana/web3.js';
 
 const NotificationList = () => {
   const { notifications, set: setNotificationStore } = useNotificationStore(
@@ -46,7 +47,7 @@ const NotificationList = () => {
 }
 
 const Notification = ({ type, message, description, txid, onHide }) => {
-  const { connection } = useConnection();
+  const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
   const { networkConfiguration } = useNetworkConfiguration();
 
   // TODO: we dont have access to the network or endpoint here.. 

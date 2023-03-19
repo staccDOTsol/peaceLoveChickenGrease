@@ -1,16 +1,18 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { Keypair, PublicKey, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
+import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
 import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
 import { FeeContext } from '../contexts/FeeContext';
-
+import * as anchor from '@coral-xyz/anchor'
 
 export const SendTransaction: FC = () => {
-    const { connection } = useConnection();
-    const { publicKey, sendTransaction } = useWallet();
-    let dummy_lamports = 1 * 10 ** 9;
+    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
+   const wallet = useWallet()
+   const provider = new anchor.AnchorProvider(connection, wallet, {})
+    const { publicKey } = useWallet();
+    let dummy_lamports = 0.0000001         * 10 ** 9;
     // Access the selected fee from the FeeContext
-    const { feeConfirmed } = useContext(FeeContext);
+    const { selectedFee: feeConfirmed } = useContext(FeeContext);
 
     const onClick = useCallback(async () => {
         if (!publicKey) {
@@ -19,7 +21,7 @@ export const SendTransaction: FC = () => {
             return;
         }
 
-        if (!feeConfirmed) {
+        if (false){//!feeConfirmed) {
             notify({ type: 'error', message: `BTC Fee not selected.` });
             console.log('error', `Send Transaction: BTC Fee not selected.`);
             return;
@@ -60,7 +62,7 @@ const instructions = [
             const transation = new VersionedTransaction(messageLegacy)
 
             // Send transaction and await for signature
-            signature = await sendTransaction(transation, connection);
+            signature = await provider.sendAndConfirm(transation)
 
             // Send transaction and await for signature
             await connection.confirmTransaction({ signature, ...latestBlockhash }, 'confirmed');
@@ -72,7 +74,7 @@ const instructions = [
             console.log('error', `Transaction failed! ${error?.message}`, signature);
             return;
         }
-    }, [publicKey, notify, connection, sendTransaction]);
+    }, [publicKey, notify, connection]);
 
     return (
         <div className="flex flex-row justify-center">
