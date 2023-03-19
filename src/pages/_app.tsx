@@ -15,15 +15,14 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           <Head>
             <title>Bitcoin Gumball Machine</title>
           </Head>
-
           <ContextProvider>
             <div className="flex flex-col h-screen">
               <Notifications />
               <AppBar/>
               <ContentContainer>
                 <Component {...pageProps} />
-                <Footer/>
               </ContentContainer>
+              <Footer/>
             </div>
           </ContextProvider>
         </>

@@ -47,7 +47,6 @@ export const HomeView: FC = ({ }) => {
   }, [wallet.publicKey, connection, getUserSOLBalance])
 
   return (
-
     <div className="md:hero mx-auto p-4">
       <div className="md:hero-content flex flex-col">
         <div>
@@ -77,21 +76,19 @@ export const HomeView: FC = ({ }) => {
             <SendTransaction />
           </div>
           <div className="flex flex-row mb-0 justify-center">
-                                <Link href="https://mmccsolana.com/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
-                                   <RxGlobe/>
-                                </Link>
-                                <Link href="https://discord.com/invite/mmcc" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
-                                    <RxDiscordLogo height="300px"/>
-                                </Link>
-                                <Link href="https://twitter.com/mmccsolana" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
-
-                                    <RxTwitterLogo/>
-                                    
-                                </Link>
-                                <Link href="https://www.instagram.com/meerkatmcc/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
-                                    <RxInstagramLogo/>
-                                </Link>
-                            </div>
+                  <Link href="https://mmccsolana.com/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxGlobe/>
+                  </Link>
+                  <Link href="https://discord.com/invite/mmcc" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxDiscordLogo height="300px"/>
+                  </Link>
+                  <Link href="https://twitter.com/mmccsolana" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxTwitterLogo/>  
+                  </Link>
+                  <Link href="https://www.instagram.com/meerkatmcc/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxInstagramLogo/>
+                  </Link>
+              </div>
           </center>
         </div>
       </div>
