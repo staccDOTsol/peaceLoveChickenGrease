@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext, ChangeEvent } from 'react';
 import axios from 'axios';
 import { FeeContext } from '../contexts/FeeContext';
+import { useLocalStorage } from '@solana/wallet-adapter-react';
 
 interface FeeDropdownProps {
   children?: React.ReactNode; // Include the children prop
@@ -11,7 +12,7 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
   const [fees, setFees] = useState<Record<string, number> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const { selectFee } = useContext(FeeContext);
-  const { selectedFee } = useContext(FeeContext);
+  const [selectedFee, setSelectedFee] = useLocalStorage('afee', 5)
 
   useEffect(() => {
     const fetchFees = async () => {
@@ -32,7 +33,7 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
     const selectedValue = parseInt(event.target.value, 10);
     console.log(event.target.value)
     console.log("selected fee in fees dropdown", selectedValue)
-    selectFee(selectedValue); // Use the selectFee function instead of setSelectedFee
+    setSelectedFee(selectedValue) // Use the selectFee function instead of setSelectedFee
   };
 
   if (loading) {
