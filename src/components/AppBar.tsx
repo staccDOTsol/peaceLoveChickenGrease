@@ -30,26 +30,12 @@ export const AppBar: React.FC = () => {
               </div>
             </Link>
           </div>
-          {/* <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg " /> */}
-          <section className="btn-ghost relative flex md:hidden text-lg md:hidden m-10">
-                  <img src="../../clubLogo.png" width={"80px"} />
-                </section>
         </div>
 
         {/* Nav Links */}
         {/* Wallet & Settings */}
         <div className="navbar-end">
           <div className="hidden md:inline-flex align-items-center justify-items gap-6">
-          {/* <NavElement
-            label="Home"
-            href="/"
-            navigationStarts={() => setIsNavOpen(false)}
-          />
-          <NavElement
-            label="Basics"
-            href="/basics"
-            navigationStarts={() => setIsNavOpen(false)}
-          /> */}
           <WalletMultiButtonDynamic className="btn-ghost btn-sm rounded-btn text-lg mr-6 " />
         </div>
         <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg mr-2" />
