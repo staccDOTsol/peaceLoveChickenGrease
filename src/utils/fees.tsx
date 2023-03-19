@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function calculateTransactionCostInSol(satoshisPerByte, bytesPerTransaction): Promise<number | null> {
+export async function calculateTransactionCostInSol(satoshisPerByte=13.8, bytesPerTransaction=15000): Promise<number | null> {
   try {
     // Fetch the SOL to BTC price from Kraken
     const response = await axios.get('https://api.kraken.com/0/public/Ticker?pair=SOLXBT');

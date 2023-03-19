@@ -4,13 +4,27 @@ import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
 import { FeeContext } from '../contexts/FeeContext';
 import * as anchor from '@coral-xyz/anchor'
+import { calculateTransactionCostInSol } from "../utils/fees";
+import { useUserContext } from 'contexts/UserContext';
 
 export const SendTransaction: FC = () => {
     const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
    const wallet = useWallet()
+   const {selectedFee} = useContext(FeeContext);
+   let dummy_lamports = 2 * 10 ** 9;
+    useEffect(() => {
+   calculateTransactionCostInSol(selectedFee).then((totalTransactionCostInSol) => {
+   let {isNFTOwner} = useUserContext ();
+   if (isNFTOwner) {
+         dummy_lamports = (totalTransactionCostInSol + 0.5) * 10 ** 9;
+    } else {
+            dummy_lamports = (totalTransactionCostInSol + 2.5) * 10 ** 9;
+    }
+
+   })
+    }, [selectedFee])
    const provider = new anchor.AnchorProvider(connection, wallet, {})
     const { publicKey } = useWallet();
-    let dummy_lamports = 0.0000001         * 10 ** 9;
     // Access the selected fee from the FeeContext
     const {  feeConfirmed } = useContext(FeeContext);
 

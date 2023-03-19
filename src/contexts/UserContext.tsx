@@ -19,8 +19,8 @@ const UserContext = createContext<UserContextValue>({
 export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider: React.FC = ({ children }: any) => {
-  const [bitcoinAddress, setBitcoinAddress] = useLocalStorage('bitcoinAddress', "")
-  const [isNFTOwner, setIsNFTOwner] = useLocalStorage('isNFTOwner', false)
+  const [bitcoinAddress, setBitcoinAddress] = useState<string | null>(null)
+  const [isNFTOwner, setIsNFTOwner] = useState<boolean>(false)
   return (
     <UserContext.Provider value={{ bitcoinAddress, setBitcoinAddress, isNFTOwner, setIsNFTOwner }}>
       {children}
