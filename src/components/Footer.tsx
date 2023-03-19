@@ -12,10 +12,8 @@ export const Footer: FC = () => {
             <footer className="border-t-2 border-[#141414] bg-black hover:text-white absolute w-full" >
                 <div className="ml-12 py-12 mr-12">
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-2 md:gap- md:space-x-12 relative">
-
                         <div className="mb-6 items-center mx-auto max-w-screen-lg">
-                            <center>
-                            </center>
+                        <center>
                             <div className="flex flex-row mb-0 gap-2">
                                 <Link href="https://mmccsolana.com/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-1">
                                    <RxGlobe/>
@@ -32,8 +30,8 @@ export const Footer: FC = () => {
                                     <RxInstagramLogo/>
                                 </Link>
                             </div>
-                            <div className="font-normal capitalize mb-2.5 ">Meerkat Millionaires Country Club</div>
-
+                            <div className="font-normal capitalize mb-2.5 ">BRRR. BRRR.</div>
+                            </center>
                         </div>
                     </div>
                 </div>
