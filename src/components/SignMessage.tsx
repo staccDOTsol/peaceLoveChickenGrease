@@ -1,11 +1,11 @@
 import { verify } from '@noble/ed25519';
-import { useWallet } from '@solana/wallet-adapter-react';
+import { useLocalStorage, useWallet } from '@solana/wallet-adapter-react';
 import bs58 from 'bs58';
 import { FC, useCallback, useContext } from 'react';
 import { notify } from "../utils/notifications";
 
 import { useState } from 'react';
-import { validate } from 'bitcoin-address-validation';
+import * as BTON from '@cmdcode/bton';
 
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
@@ -14,13 +14,22 @@ import FeesDropdown from './FeesDropdown';
 
 export const SignMessage: FC = () => {
     const { publicKey, signMessage } = useWallet();
-
+    function validate( address ) {
+        try {
+            BTON.Tap.decodeAddress( address ).toString() // throws if invalid
+            return true;
+        } catch( e ) {
+            console.log(e)
+        }
+        return;
+    }
     const [msg, setMessage] = useState('');  const handleChange = (event) => {
         setMessage(event.target.value);
       };
     // Access the selected fee from the FeeContext
-    const { selectedFee } = useContext(FeeContext);
+    const [selectedFee, setSelectedFee] = useLocalStorage('afee', 5)
     const { setFeeConfirmed } = useContext(FeeContext);
+   
     const { feeConfirmed } = useContext(FeeContext);
     // SIGN MESSAGE LOGIC 
     const onClick = useCallback(async () => {
@@ -57,7 +66,7 @@ export const SignMessage: FC = () => {
         <div>
         {publicKey &&
             <div>
-                {!selectedFee &&
+                {!feeConfirmed &&
                 <div>
                     <span className="block group-disabled:hidden messageBox" >
                             Enter your BTC address and select your fee rate
@@ -74,7 +83,7 @@ export const SignMessage: FC = () => {
                         </div>
                     </div>
                 </div>}
-                {!selectedFee &&
+                {!feeConfirmed &&
                     <div className="flex flex-row justify-center messageBox">
                         <div className="relative group items-center">
                         <div>
