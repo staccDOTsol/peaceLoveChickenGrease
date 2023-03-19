@@ -19,7 +19,7 @@ export const AppBar: React.FC = () => {
   return (
     <div>
       {/* NavBar / Header */}
-      <div className="navbar flex h-24 flex-row md:mb-2 shadow-lg bg-orange text-neutral-content border-b border-zinc-600 bg-opacity-66">
+      <div className="navbar flex h-24 flex-row md:mb-2 bg-orange text-neutral-content">
         <div className="navbar-start align-items-center">
           <div className="hidden sm:inline w-22 h-22 md:p-2 ml-10">
             <Link href="/"  target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white">
