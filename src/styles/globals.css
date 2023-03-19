@@ -36,3 +36,7 @@ a {
 input, select, textarea{
   color: #000000;
 }
+
+.react-icons {
+  vertical-align: middle;
+}

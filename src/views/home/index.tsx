@@ -49,7 +49,7 @@ export const HomeView: FC = ({ }) => {
       <div className="md:hero-content flex flex-col">
         <div>
         <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-fuchsia-100 mb-4">
-          Meerkat Millionaires Country Club
+          Ordinal Millionaires Country Club
         </h1>
         {/* </div>
         <div> */}

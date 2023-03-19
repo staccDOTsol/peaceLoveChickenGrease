@@ -7,10 +7,10 @@ const Home: NextPage = (props) => {
   return (
     <div>
       <Head>
-        <title>Meerkat Millionaires Country Club - Ordinals</title>
+        <title>Bitcoin Gumball Machine</title>
         <meta
           name="description"
-          content="Meerkat Millionaires Country Club - Ordinals"
+          content="Bitcoin Gumball Machine"
         />
       </Head>
       <HomeView />

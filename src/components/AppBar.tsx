@@ -6,9 +6,6 @@ import { useAutoConnect } from '../contexts/AutoConnectProvider';
 import NetworkSwitcher from './NetworkSwitcher';
 import NavElement from './nav-element';
 
-import mainLogo from'../../public/country_club.ai_-1-1010x1024.png';
-import { env } from 'process';
-
 const MintURL = process.env.MINT_URL;
 
 const WalletMultiButtonDynamic = dynamic(
@@ -22,7 +19,7 @@ export const AppBar: React.FC = () => {
   return (
     <div>
       {/* NavBar / Header */}
-      <div className="navbar flex h-32 flex-row md:mb-2 shadow-lg bg-black text-neutral-content border-b border-zinc-600 bg-opacity-66">
+      <div className="navbar flex h-24 flex-row md:mb-2 shadow-lg bg-black text-neutral-content border-b border-zinc-600 bg-opacity-66">
         <div className="navbar-start align-items-center">
           <div className="hidden sm:inline w-22 h-22 md:p-2 ml-10">
             <Link href="/"  target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white">
