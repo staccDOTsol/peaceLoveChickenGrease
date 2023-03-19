@@ -1,5 +1,7 @@
 // Next, React
 import { FC, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { RxDiscordLogo, RxTwitterLogo, RxInstagramLogo, RxGlobe } from 'react-icons/rx';
 
 // Wallet
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
@@ -52,8 +54,6 @@ export const HomeView: FC = ({ }) => {
         <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-500 to-fuchsia-100 mb-4">
           Ordinal Meerkats Country Club
         </h1>
-        {/* </div>
-        <div> */}
               <h4 className="text-2x1 md:text-2xl text-center text-slate-300 my-2">
                 <p>Use Solana to mint and have your Ordinal sent to your BTC wallet!</p>
               </h4>
@@ -76,6 +76,22 @@ export const HomeView: FC = ({ }) => {
             <SignMessage />
             <SendTransaction />
           </div>
+          <div className="flex flex-row mb-0 justify-center">
+                                <Link href="https://mmccsolana.com/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                                   <RxGlobe/>
+                                </Link>
+                                <Link href="https://discord.com/invite/mmcc" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                                    <RxDiscordLogo height="300px"/>
+                                </Link>
+                                <Link href="https://twitter.com/mmccsolana" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+
+                                    <RxTwitterLogo/>
+                                    
+                                </Link>
+                                <Link href="https://www.instagram.com/meerkatmcc/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                                    <RxInstagramLogo/>
+                                </Link>
+                            </div>
           </center>
         </div>
       </div>

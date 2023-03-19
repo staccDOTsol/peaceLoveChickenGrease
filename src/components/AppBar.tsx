@@ -25,14 +25,14 @@ export const AppBar: React.FC = () => {
             <Link href="/"  target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white">
               <div className="container">
                 <section >
-                  <img src="../../logoWhite.png" width={"80px"} />
+                  <img src="../../clubLogo.png" width={"80px"} />
                 </section>
               </div>
             </Link>
           </div>
           {/* <WalletMultiButtonDynamic className="btn-ghost btn-sm relative flex md:hidden text-lg " /> */}
           <section className="btn-ghost relative flex md:hidden text-lg md:hidden m-10">
-                  <img src="../../logoWhite.png" width={"80px"} />
+                  <img src="../../clubLogo.png" width={"80px"} />
                 </section>
         </div>
 
