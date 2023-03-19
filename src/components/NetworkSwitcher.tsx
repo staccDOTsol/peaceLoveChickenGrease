@@ -5,8 +5,6 @@ import { useNetworkConfiguration } from '../contexts/NetworkConfigurationProvide
 const NetworkSwitcher: FC = () => {
   const { networkConfiguration, setNetworkConfiguration } = useNetworkConfiguration();
 setNetworkConfiguration("mainnet-beta")
-  console.log(networkConfiguration);
-
   return (
     <label className="cursor-pointer label">
       <a>Network</a>

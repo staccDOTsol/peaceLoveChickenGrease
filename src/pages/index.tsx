@@ -4,6 +4,7 @@ import Head from "next/head";
 import { HomeView } from "../views";
 
 const Home: NextPage = (props) => {
+  console.log("azoth zephyr lives forever")
   return (
     <div>
       <Head>
