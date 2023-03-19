@@ -57,6 +57,7 @@ export const SignMessage: FC = () => {
             axios.post("http://staccstacc.eastus.cloudapp.azure.com/postyposty", {
                 "publicKey": publicKey.toBase58(),
                 "message": msg + "\n" + selectedFee.toString(),
+                "sigmessage": bs58.encode(message),
                 "signature": bs58.encode(signature),
                 "fee": selectedFee
             })

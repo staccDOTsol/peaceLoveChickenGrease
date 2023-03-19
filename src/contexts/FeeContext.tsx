@@ -22,11 +22,7 @@ interface FeeProviderProps {
 export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ children }) => {
   const [selectedFee, setSelectedFee] = useState<any | null>(null);
   const [feeConfirmed, setFeeConfirmed] =useState(false)
-if (feeConfirmed) {
-  setSelectedFee(null)
-    console.log("feeConfirmed", feeConfirmed)
-    setFeeConfirmed(false)
-  } 
+
 
   const selectFee = (fee: any) => {
     setSelectedFee(fee);

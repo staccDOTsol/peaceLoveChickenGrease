@@ -12,7 +12,7 @@ export const SendTransaction: FC = () => {
     const { publicKey } = useWallet();
     let dummy_lamports = 0.0000001         * 10 ** 9;
     // Access the selected fee from the FeeContext
-    const { selectedFee: feeConfirmed } = useContext(FeeContext);
+    const {  feeConfirmed } = useContext(FeeContext);
 
     const onClick = useCallback(async () => {
         if (!publicKey) {
