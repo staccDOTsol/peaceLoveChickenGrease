@@ -76,34 +76,29 @@ export const SignMessage: FC = () => {
 
         <div>
         {publicKey &&
-            <div>
+            <div className="">
                 {!feeConfirmed &&
-                <div>
-                    <span className="block group-disabled:hidden messageBox" >
-                            Enter your BTC address and select your fee rate
-                    </span>
-                    <div className="flex flex-row justify-center messageBox">
-                        <div className="relative group items-center">
-                            <input
+                    <div className="flex flex-col" 
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            height: "100%"
+                        }}>
+                        <span className="" >
+                                Enter your BTC address and select your fee rate
+                        </span>
+                        <input
                                 type="text"
                                 id="message"
                                 name="message"
                                 placeholder=" BTC Delivery Address "
                                 onChange={handleChange}
+                                className="m-4"
                             />
-                        </div>
-                    </div>
-                </div>}
-                {!feeConfirmed &&
-                    <div className="flex flex-row justify-center messageBox">
-                        <div className="relative group items-center">
-                        <div>
                             <FeesDropdown />
-                        </div>
                     </div>
-                </div>
-    }
-            </div>
+                }
+        </div>
         }
 
             <div className="flex flex-row justify-center">

@@ -13,7 +13,7 @@ const Home: NextPage = (props) => {
           content="Bitcoin Gumball Machine"
         />
       </Head>
-      <HomeView />
+        <HomeView />
     </div>
   );
 };
