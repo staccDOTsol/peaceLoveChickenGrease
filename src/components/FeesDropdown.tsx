@@ -20,6 +20,11 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
         const response = await axios.get<Record<string, number>>(
           'https://mempool.space/api/v1/fees/recommended'
         );
+        // remove the last item from this array
+        response.data = Object.fromEntries(
+          Object.entries(response.data).slice(0, -1)
+        );
+        
         setFees(response.data);
         setLoading(false);
       } catch (error) {

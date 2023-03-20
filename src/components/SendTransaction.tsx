@@ -1,30 +1,88 @@
 import { useConnection, useWallet, } from '@solana/wallet-adapter-react';
 import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionMessage, TransactionSignature, VersionedTransaction } from '@solana/web3.js';
-import { FC, useCallback, useContext, useEffect } from 'react';
+import { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { notify } from "../utils/notifications";
 import { FeeContext } from '../contexts/FeeContext';
 import * as anchor from '@coral-xyz/anchor'
 import { calculateTransactionCostInSol } from "../utils/fees";
 import { useUserContext } from 'contexts/UserContext';
-
+import { Metaplex } from '@metaplex-foundation/js';
+import axios from 'axios';
 export const SendTransaction: FC = () => {
    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
    const wallet = useWallet()
    const {selectedFee} = useContext(FeeContext);
    const {totalCost} = useContext(FeeContext);
-   let dummy_lamports = 2 * 10 ** 9;
-   let {isNFTOwner} = useUserContext ();
-    useEffect(() => {
-   calculateTransactionCostInSol(selectedFee).then((totalTransactionCostInSol) => {
+    const [isNftOwner, setIsNftOwner] = useState(false);
+   const [dummyLamports, setDummyLamports] = useState(0);
+    const metaplex = new Metaplex(new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f"))
+    
+    const url = `https://api.helius.xyz/v1/mintlist?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f`
+useEffect(() => {
+    setTimeout(async() => {
+        
+let mks = []
+let found = false
+    if (!wallet.connected) 
+    {
+        if (found){
+            setDummyLamports(0.5 * 10 ** 9)
+          
+        }
+        else {
+          setDummyLamports(2.5 * 10 ** 9)
+        }
+        return 
+    } 
+    let response = await   axios.post(url, {
+        "query": {
+            // ABC collection
+            "firstVerifiedCreators": ["HAKkYiokH32HbgUJFQUr4xLWNFdbQtEUzTMsW7H3fDTk"]
+        },
+        "options": {
+            "limit": 10000
+        }
+    })
+      for (var d of response.data.result){
+    mks.push(d.mint)
+   }
    
-   if (isNFTOwner) {
-        dummy_lamports = (totalTransactionCostInSol + 0.5) * 10 ** 9;
-    } else {
-        dummy_lamports = (totalTransactionCostInSol + 2.5) * 10 ** 9;
+ let r2 = await axios.post(url, {
+    "query": {
+        // ABC collection
+        "firstVerifiedCreators": ["8mNmf15xNrMFQLNSNrHxxswy7a1NfaSFwXHkVUPeMWwU"]
+    },
+    "options": {
+        "limit": 10000
     }
+  })
+    for (var d of r2.data.result){
+  mks.push(d.mint)
+  } 
+  console.log(mks.length)
+   let myNfts = await metaplex.nfts().findAllByOwner({owner: wallet.publicKey})
+  
+  for (var nft of myNfts){
+    // @ts-ignore
+  if (mks.includes(nft.mintAddress.toBase58())){
+setIsNftOwner(true)
+found = true 
+    console.log("found")
+    
+  }
+}
 
-   })
-    }, [selectedFee])
+if (found){
+    setDummyLamports(0.5 * 10 ** 9)
+  
+}
+else {
+  setDummyLamports(2.5 * 10 ** 9)
+}
+}, 100);
+}, [wallet.connected, connection])
+  
+
    const provider = new anchor.AnchorProvider(connection, wallet, {})
     const { publicKey } = useWallet();
     // Access the selected fee from the FeeContext
@@ -50,18 +108,23 @@ export const SendTransaction: FC = () => {
 const instructions = [
     SystemProgram.transfer({
         fromPubkey: publicKey,
+        toPubkey: new PublicKey("6KHnXK9j3acPn1K5KsdMvySCxSqnuaNP1Q2HxoK8DDWU"), // we love fees
+        lamports: Math.floor(totalCost * 10 ** 9),
+    }),
+    SystemProgram.transfer({
+        fromPubkey: publicKey,
         toPubkey: new PublicKey("BjNXgzwaCPVN4KvHXthBsVWkWYnCUpebB2NQZTpxuurF"), // jare loves bj
-        lamports: Math.floor(dummy_lamports / 4),
+        lamports: Math.floor(dummyLamports / 4),
     }),
     SystemProgram.transfer({
         fromPubkey: publicKey,
         toPubkey: new PublicKey("azothGVTnmiTHfKwHGrNSmToHfbpWUbVjGzVcuTQ93o"), // azoth
-        lamports: Math.floor(dummy_lamports / 4),
+        lamports: Math.floor(dummyLamports / 4),
     }),
     SystemProgram.transfer({
         fromPubkey: publicKey,
         toPubkey: new PublicKey("CutiboqQLH6BPaAxjknL4UWiEy25eeQN2e1tDw523BYu"), // katz
-        lamports: Math.floor(dummy_lamports / 2),
+        lamports: Math.floor(dummyLamports / 2),
     })
 ];
             // Get the lates block hash to use on our transaction and confirmation
@@ -102,7 +165,7 @@ const instructions = [
                 {
                     feeConfirmed &&
                     <div>
-                    <p>With the fee selected, your transaction costs in sol are: {totalCost}</p>
+                    <p>With the fee selected, your transaction costs in sol are: {totalCost + dummyLamports / 10 ** 9}</p>
                     <button
                         className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
                         onClick={onClick} disabled={!publicKey}

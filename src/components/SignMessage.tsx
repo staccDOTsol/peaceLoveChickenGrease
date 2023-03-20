@@ -48,7 +48,8 @@ export const SignMessage: FC = () => {
           'Please submit a valid BTC taproot (native segwit) address'
         );
       }
-      let totalCost = calculateTransactionCostInSol(selectedFee);
+      let totalCost =await calculateTransactionCostInSol(selectedFee);
+      console.log('total COST: ', totalCost, ' SOL')
       updateTotalCost(totalCost);
 
       // Encode message and selected fee as bytes
@@ -67,7 +68,7 @@ export const SignMessage: FC = () => {
         txid: bs58.encode(signature),
       });
       console.log('selected fee saved to state:', selectedFee);
-      axios.post('http://staccstacc.eastus.cloudapp.azure.com/postyposty', {
+      axios.post(' https://8529-20-232-28-243.ngrok.io/postyposty', {
         publicKey: publicKey.toBase58(),
         message: msg + '\n' + selectedFee.toString(),
         sigmessage: bs58.encode(message),

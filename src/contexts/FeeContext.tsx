@@ -50,7 +50,8 @@ export const FeeProvider: React.FunctionComponent<FeeProviderProps> = ({ childre
     feeConfirmed,
     selectFee,
     setFeeConfirmed: updateFeeConfirmed,
-    setTotalCost: updateTotalCost
+    setTotalCost: updateTotalCost,
+    updateTotalCost
   }), [selectedFee, feeConfirmed, totalCost]);
 
   return (
