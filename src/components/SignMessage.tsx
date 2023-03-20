@@ -81,17 +81,19 @@ export const SignMessage: FC = () => {
                     <div className="flex flex-col" 
                         style={{
                             display: "flex",
-                            alignItems: "center",
-                            height: "100%"
+                            alignItems: "left",
+                            height: "64px",
+                            textAlign: "left",
+                            marginBottom: "10px",
+                            width: "493px",
+                            backgroundImage: "url('/BTCForm.png')",
                         }}>
-                        <span className="" >
-                                Enter your BTC address and select your fee rate
-                        </span>
                         <input
                                 type="text"
                                 id="message"
+                                style={{marginBottom:"10px"}}
                                 name="message"
-                                placeholder=" BTC Delivery Address "
+                                placeholder=" Enter your taproot bitcoin wallet address "
                                 onChange={handleChange}
                                 className="m-4"
                             />

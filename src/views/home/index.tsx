@@ -31,7 +31,7 @@ export const HomeView: FC = ({ }) => {
                               
                             }}>
         <img src="OrdinalMeerkatsCountryClub.png" className="mt-40"/>
-        <img src="UseSolana.png" className="mb-4 ml-28 w-704"/>
+        <img src="UseSolana.png" className="mb-4 ml-28 w-604"/>
               {/* <h4 className="text-2x1 md:text-2xl text-center text-white-400 my-2">
                 <p>Use Solana to mint and have your Ordinal sent to your BTC wallet!</p>
               </h4> */}
