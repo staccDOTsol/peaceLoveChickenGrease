@@ -1,45 +1,28 @@
 // Next, React
 import { FC, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { RxDiscordLogo, RxTwitterLogo, RxInstagramLogo, RxGlobe } from 'react-icons/rx';
-
-// Wallet
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 
 // Components
 import { SendTransaction } from '../../components/SendTransaction';
 
 // Store
-import useUserSOLBalanceStore from '../../stores/useUserSOLBalanceStore';
-import { FeeProvider } from 'contexts/FeeContext';
 import { SignMessage } from 'components/SignMessage';
-import { Connection } from '@solana/web3.js';
-
 
 export const HomeView: FC = ({ }) => {
-
   return (
-    <div className="md:hero mx-auto p-4">
-      <div className="md:hero-content flex flex-col">
-        <div >
-        <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text text-white mb-4">
-          Ordinal Meerkats Country Club
-        </h1>
-              <h4 className="text-2x1 md:text-2xl text-center text-slate-300 my-2">
+      <div className="flex flex-row m-40">
+      <div className="border w-1/2">
+        <img src="OrdinalMeerkatsCountryClub.png" className="mt-12 ml-20"/>
+        <img src="UseSolana.png" className="mb-4 ml-20"/>
+              {/* <h4 className="text-2x1 md:text-2xl text-center text-white-400 my-2">
                 <p>Use Solana to mint and have your Ordinal sent to your BTC wallet!</p>
-              </h4>
-        </div>
-        <div className="flex flex-col mt-2 center-items">
+              </h4> */}
           {/* CONTENT GOES HERE */}
           <center>
-          <div>
-            <img src="hg-4618914027500363837@1x.png" className='w-80'/>
-          </div>
           <div className="text-center mt-4">
             <SignMessage />
             <SendTransaction />
           </div>
-          <div className="flex flex-row mb-0 justify-center">
+          {/* <div className="flex flex-row mb-0 justify-center">
                   <Link href="https://mmccsolana.com/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
                       <RxGlobe/>
                   </Link>
@@ -52,10 +35,33 @@ export const HomeView: FC = ({ }) => {
                   <Link href="https://www.instagram.com/meerkatmcc/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
                       <RxInstagramLogo/>
                   </Link>
-              </div>
+              </div> */}
           </center>
-        </div>
+
       </div>
-    </div>
+      <div className="border w-1/2">
+          {/* CONTENT GOES HERE */}
+          <center>
+          <div>
+            <img src="hg-4618914027500363837@1x.png" className='h-80'/>
+            <img src="lightning-bolt@1x.png" className='h-80 mb-100'/>
+          </div>
+          {/* <div className="flex flex-row mb-0 justify-center">
+                  <Link href="https://mmccsolana.com/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxGlobe/>
+                  </Link>
+                  <Link href="https://discord.com/invite/mmcc" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxDiscordLogo height="300px"/>
+                  </Link>
+                  <Link href="https://twitter.com/mmccsolana" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxTwitterLogo/>  
+                  </Link>
+                  <Link href="https://www.instagram.com/meerkatmcc/" target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white m-5 mt-12">
+                      <RxInstagramLogo/>
+                  </Link>
+              </div> */}
+          </center>
+      </div>
+      </div>
   );
 };

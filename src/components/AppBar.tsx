@@ -25,7 +25,7 @@ export const AppBar: React.FC = () => {
             <Link href="/"  target="_blank" rel="noopener noreferrer" passHref className="text-secondary hover:text-white">
               <div className="container">
                 <section >
-                  <img src="../../mmcc.png" width={"80px"} />
+                  <img src="../../mmcc.png" className="mt-4"/>
                 </section>
               </div>
             </Link>
