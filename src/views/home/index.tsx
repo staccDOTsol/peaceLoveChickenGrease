@@ -28,14 +28,14 @@ export const HomeView: FC = ({}) => {
         <div className="flex flex-col justify-center text-start">
           {/* <img src="OrdinalMeerkatsCountryClub.png" className="mt-40" /> */}
           <div className="max-w-sm md:max-w-4xl mx-auto ">
-            <div className="md:text-8xl text-center md:text-start text-5xl">
-              <p>Ordinal Meerkats</p>
-              <p>Country Club</p>
+            <div className="md:text-8xl text-center md:text-start text-5xl mona-font">
+              <p style={{fontWeight: 'bold'}}>Ordinal Meerkats</p>
+              <p style={{fontWeight: 'bold'}}>Country Club</p>
             </div>
-            <div className="mt-10 md:text-start text-center text-xl">
-              <p>Use SOLANA to mint & have your Ordinal sent to BTC wallet</p>
+            <div className="mt-10 md:text-start text-center text-xl poppins-font">
+              <p >Use SOLANA to mint & have your Ordinal sent to BTC wallet</p>
             </div>
-            <div className="max-w-xl overflow-hidden">
+            <div className="max-w-xl overflow-hidden mt-12">
               <SignMessage />
               <SendTransaction />
             </div>
