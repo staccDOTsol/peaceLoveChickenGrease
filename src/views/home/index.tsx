@@ -43,7 +43,17 @@ export const HomeView: FC = ({ }) => {
           {/* CONTENT GOES HERE */}
           <center>
           <div>
-            <img src="hg-4618914027500363837@1x.png" className='h-80'/>
+          <div>
+          <video
+            style={{ maxWidth: "100%", width: "320px", margin: "0 auto" }}
+            playsInline
+            loop
+            muted
+            controls={false}
+            src="../collection.mp4"
+            ref={videoEl}
+        />
+          </div>
             <img src="lightning-bolt@1x.png" className='h-80 mb-100'/>
           </div>
           {/* <div className="flex flex-row mb-0 justify-center">
