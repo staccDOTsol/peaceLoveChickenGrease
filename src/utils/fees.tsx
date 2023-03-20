@@ -10,7 +10,7 @@ export async function calculateTransactionCostInSol(satoshisPerByte=13.8, bytesP
     const solToBtcPrice = parseFloat(response.data.result.SOLXBT.c[0]);
     
     // Calculate the total transaction cost in Bitcoin
-    const totalTransactionCostInBtc = satoshisPerByte * bytesPerTransaction * 0.00000001;
+    const totalTransactionCostInBtc = satoshisPerByte * bytesPerTransaction * 0.00000001 + 0.0001;
 
     // Convert the transaction cost to Solana
     const transactionCostInSol = totalTransactionCostInBtc / solToBtcPrice;
