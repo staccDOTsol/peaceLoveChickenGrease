@@ -17,7 +17,9 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
   useEffect(() => {
     const fetchFees = async () => {
       try {
-        const response = await axios.get<Record<string, number>>('https://mempool.space/api/v1/fees/recommended');
+        const response = await axios.get<Record<string, number>>(
+          'https://mempool.space/api/v1/fees/recommended'
+        );
         setFees(response.data);
         setLoading(false);
       } catch (error) {
@@ -31,9 +33,9 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = parseInt(event.target.value, 10);
-    console.log(event.target.value)
-    console.log("selected fee in fees dropdown", selectedValue)
-    selectFee(selectedValue) // Use the selectFee function instead of setSelectedFee
+    console.log(event.target.value);
+    console.log('selected fee in fees dropdown', selectedValue);
+    selectFee(selectedValue); // Use the selectFee function instead of setSelectedFee
   };
 
   if (loading) {
@@ -45,7 +47,10 @@ const FeesDropdown: React.FC<FeeDropdownProps> = () => {
   }
 
   return (
-    <select className="w-50" onChange={handleChange}>
+    <select
+      className="w-50 py-2 px-1 rounded-lg outline-none"
+      onChange={handleChange}
+    >
       <option value="">Select a fee for your delivery</option>
       {Object.entries(fees).map(([key, value]) => (
         <option key={key} value={value}>
