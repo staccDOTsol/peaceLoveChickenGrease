@@ -12,7 +12,7 @@ const Home: NextPage = (props) => {
           name="description"
           content="Bitcoin Gumball Machine"
         />
-        <link rel="preload" href="Mona-Sans.woff2" as="font" type="font/woff2"></link>
+        <link rel="preload" href="Mona-Sans-Black.woff2" as="font" type="font/woff2"></link>
       </Head>
         <HomeView />
     </div>

@@ -29,7 +29,7 @@ export const HomeView: FC = ({}) => {
           {/* <img src="OrdinalMeerkatsCountryClub.png" className="mt-40" /> */}
           <div className="max-w-sm md:max-w-4xl mx-auto ">
             <div className="md:text-8xl text-center md:text-start text-5xl mona-font">
-              <p style={{fontWeight: 'bold'}}>Ordinal Meerkats</p>
+              <p style={{fontWeight: 'bold', fontSize: 79}}>Ordinal Meerkats</p>
               <p style={{fontWeight: 'bold'}}>Country Club</p>
             </div>
             <div className="mt-10 md:text-start text-center text-xl poppins-font">
