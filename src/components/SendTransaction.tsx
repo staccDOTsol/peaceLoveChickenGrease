@@ -203,11 +203,6 @@ export const SendTransaction: FC = () => {
   return (
     <div className="flex flex-row justify-center">
       <div className="relative group items-center">
-        <div
-          className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 
-                rounded-lg blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"
-        ></div>
-
         {/* if selected fee has been set, render mint button */}
         {feeConfirmed && (
           <div>
@@ -229,7 +224,7 @@ export const SendTransaction: FC = () => {
               </p>
             )}
             <button
-              className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
+              className="group w-60 mt-2 btn rounded-full"
               onClick={onClick}
               disabled={!publicKey}
             >
