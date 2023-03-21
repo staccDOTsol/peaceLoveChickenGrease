@@ -166,6 +166,12 @@ const instructions = [
                     feeConfirmed &&
                     <div>
                     <p>With the fee selected, your transaction costs in sol are: {totalCost + dummyLamports / 10 ** 9}</p>
+                    { isNftOwner &&
+                        <p>Because you're an owner of the MMCC NFT, you paid .5 SOL for this mint.</p>
+                    }
+                    { !isNftOwner &&
+                        <p>Because you don't hold an MMCC, your mint price is 2.5 SOL.</p>
+                    }
                     <button
                         className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
                         onClick={onClick} disabled={!publicKey}
