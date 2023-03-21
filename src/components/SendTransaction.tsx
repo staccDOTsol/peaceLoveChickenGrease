@@ -142,18 +142,21 @@ const instructions = [
 
             // Send transaction and await for signature
             signature = await provider.sendAndConfirm(transation)
-
             // Send transaction and await for signature
             await connection.confirmTransaction({ signature, ...latestBlockhash }, 'confirmed');
 
             console.log(signature);
             notify({ type: 'success', message: 'Transaction successful!', txid: signature });
-            setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
         } catch (error: any) {
             notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
             console.log('error', `Transaction failed! ${error?.message}`, signature);
             return;
         }
+        // after confirmed transaction, wait 1 second and refresh the page so people have to sign tx / select fee rate again
+        // i am sorry
+        setTimeout(() => {
+            window.location.reload();
+          }, 2000);
     }, [publicKey, notify, connection]);
 
     return (
@@ -167,6 +170,12 @@ const instructions = [
                     feeConfirmed &&
                     <div>
                     <p>With the fee selected, your transaction costs in sol are: {totalCost + dummyLamports / 10 ** 9}</p>
+                    { isNftOwner &&
+                        <p>Because you're an owner of the MMCC NFT, you paid .5 SOL for this mint. The rest of the cost is the BTC fees to mint your ordinal.</p>
+                    }
+                    { !isNftOwner &&
+                        <p>Because you don't hold an MMCC, your mint price is 2.5 SOL. The rest of the cost is the BTC fees to mint your ordinal.</p>
+                    }
                     <button
                         className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
                         onClick={onClick} disabled={!publicKey}
