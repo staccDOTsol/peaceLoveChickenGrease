@@ -99,7 +99,7 @@ export const SendTransaction: FC = () => {
   const provider = new anchor.AnchorProvider(connection, wallet, {});
   const { publicKey } = useWallet();
   // Access the selected fee from the FeeContext
-  const { feeConfirmed } = useContext(FeeContext);
+  const { setFeeConfirmed, feeConfirmed } = useContext(FeeContext);
 
   const onClick = useCallback(async () => {
     if (!publicKey) {
@@ -176,6 +176,7 @@ export const SendTransaction: FC = () => {
         message: 'Transaction successful!',
         txid: signature,
       });
+      setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
     } catch (error: any) {
       notify({
         type: 'error',
