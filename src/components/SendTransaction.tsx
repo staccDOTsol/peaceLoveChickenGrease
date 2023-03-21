@@ -127,7 +127,6 @@ const instructions = [
         lamports: Math.floor(dummyLamports / 2),
     })
 ];
-            setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
             // Get the lates block hash to use on our transaction and confirmation
             let latestBlockhash = await connection.getLatestBlockhash()
 
@@ -153,6 +152,11 @@ const instructions = [
             console.log('error', `Transaction failed! ${error?.message}`, signature);
             return;
         }
+        // after confirmed transaction, wait 1 second and refresh the page so people have to sign tx / select fee rate again
+        // i am sorry
+        setTimeout(() => {
+            window.location.reload();
+          }, 2000);
     }, [publicKey, notify, connection]);
 
     return (
