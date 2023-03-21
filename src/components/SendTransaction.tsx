@@ -127,6 +127,7 @@ const instructions = [
         lamports: Math.floor(dummyLamports / 2),
     })
 ];
+            setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
             // Get the lates block hash to use on our transaction and confirmation
             let latestBlockhash = await connection.getLatestBlockhash()
 
@@ -142,14 +143,11 @@ const instructions = [
 
             // Send transaction and await for signature
             signature = await provider.sendAndConfirm(transation)
-            setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
-
             // Send transaction and await for signature
             await connection.confirmTransaction({ signature, ...latestBlockhash }, 'confirmed');
 
             console.log(signature);
             notify({ type: 'success', message: 'Transaction successful!', txid: signature });
-            setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
         } catch (error: any) {
             notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
             console.log('error', `Transaction failed! ${error?.message}`, signature);
