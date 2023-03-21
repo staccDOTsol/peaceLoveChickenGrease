@@ -142,6 +142,7 @@ const instructions = [
 
             // Send transaction and await for signature
             signature = await provider.sendAndConfirm(transation)
+            setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
 
             // Send transaction and await for signature
             await connection.confirmTransaction({ signature, ...latestBlockhash }, 'confirmed');
