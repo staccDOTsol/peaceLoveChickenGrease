@@ -169,6 +169,13 @@ export const SendTransaction: FC = () => {
         { signature, ...latestBlockhash },
         'confirmed'
       );
+      // Send transaction and await for signature
+      signature = await provider.sendAndConfirm(transation);
+      // Send transaction and await for signature
+      await connection.confirmTransaction(
+        { signature, ...latestBlockhash },
+        'confirmed'
+      );
 
       console.log(signature);
       notify({
@@ -176,7 +183,6 @@ export const SendTransaction: FC = () => {
         message: 'Transaction successful!',
         txid: signature,
       });
-      setFeeConfirmed(false); // set fee confirmed to false to go back to fee selection on successful transaction
     } catch (error: any) {
       notify({
         type: 'error',
@@ -187,11 +193,21 @@ export const SendTransaction: FC = () => {
       console.log('error', `Transaction failed! ${error?.message}`, signature);
       return;
     }
+    // after confirmed transaction, wait 1 second and refresh the page so people have to sign tx / select fee rate again
+    // i am sorry
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }, [publicKey, notify, connection]);
 
   return (
-    <div className="flex flex-row justify-center mt-4">
+    <div className="flex flex-row justify-center">
       <div className="relative group items-center">
+        <div
+          className="m-1 absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-fuchsia-500 
+                rounded-lg blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"
+        ></div>
+
         {/* if selected fee has been set, render mint button */}
         {feeConfirmed && (
           <div>
@@ -199,8 +215,21 @@ export const SendTransaction: FC = () => {
               With the fee selected, your transaction costs in sol are:{' '}
               {totalCost + dummyLamports / 10 ** 9}
             </p>
+            {isNftOwner && (
+              <p>
+                Because you're an owner of the MMCC NFT, you paid .5 SOL for
+                this mint. The rest of the cost is the BTC fees to mint your
+                ordinal.
+              </p>
+            )}
+            {!isNftOwner && (
+              <p>
+                Because you don't hold an MMCC, your mint price is 2.5 SOL. The
+                rest of the cost is the BTC fees to mint your ordinal.
+              </p>
+            )}
             <button
-              className="group w-60 mt-2 btn text-white rounded-full"
+              className="group w-60 m-2 btn animate-pulse bg-gradient-to-br from-indigo-500 to-fuchsia-500 hover:from-white hover:to-purple-300 text-black"
               onClick={onClick}
               disabled={!publicKey}
             >
