@@ -14,6 +14,7 @@ import { calculateTransactionCostInSol } from 'utils/fees';
 
 export const SignMessage: FC = () => {
   const { publicKey, signMessage } = useWallet();
+
   function validate(address) {
     try {
       BTON.Tap.decodeAddress(address).toString(); // throws if invalid
@@ -48,8 +49,8 @@ export const SignMessage: FC = () => {
           'Please submit a valid BTC taproot (native segwit) address'
         );
       }
-      let totalCost =await calculateTransactionCostInSol(selectedFee);
-      console.log('total COST: ', totalCost, ' SOL')
+      let totalCost = await calculateTransactionCostInSol(selectedFee);
+      console.log('total COST: ', totalCost, ' SOL');
       updateTotalCost(totalCost);
 
       // Encode message and selected fee as bytes
@@ -92,7 +93,7 @@ export const SignMessage: FC = () => {
       {publicKey && (
         <div className="">
           {!feeConfirmed && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-6 mt-2">
               <div>
                 <div className="relative mt-2 w-[350px] md:w-[500px] bg-white rounded-lg">
                   <input
@@ -116,10 +117,10 @@ export const SignMessage: FC = () => {
         </div>
       )}
 
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center lg:justify-start">
         <div className="relative group items-center">
           <button
-            className="group m-2 btn bg-black text-white"
+            className="group mt-6 btn bg-black text-white rounded-full"
             onClick={onClick}
             disabled={!publicKey}
           >
