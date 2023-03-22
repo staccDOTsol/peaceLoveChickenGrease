@@ -112,27 +112,27 @@ export const SignMessage: FC = () => {
               <div>
                 <FeesDropdown />
               </div>
+              <div className="flex flex-row justify-center lg:justify-start">
+              <div className="relative group items-center">
+                <button
+                  className="group mt-6 btn bg-black text-white rounded-full"
+                  onClick={onClick}
+                  disabled={!publicKey}
+                >
+                  <div className="hidden text-white group-disabled:block">
+                    Wallet not connected
+                  </div>
+                  <span className="block group-disabled:hidden">
+                    <p className={'text-white'}>Sign Message</p>
+                  </span>
+                </button>
+              </div>
             </div>
+          </div>
           )}
         </div>
       )}
 
-      <div className="flex flex-row justify-center lg:justify-start">
-        <div className="relative group items-center">
-          <button
-            className="group mt-6 btn bg-black text-white rounded-full"
-            onClick={onClick}
-            disabled={!publicKey}
-          >
-            <div className="hidden text-white group-disabled:block">
-              Wallet not connected
-            </div>
-            <span className="block group-disabled:hidden">
-              <p className={'text-white'}>Sign Message</p>
-            </span>
-          </button>
-        </div>
-      </div>
     </div>
   );
 };
