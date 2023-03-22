@@ -199,30 +199,29 @@ export const SendTransaction: FC = () => {
         {feeConfirmed && (
           <div>
             <p>
-              With the fee selected, your transaction costs in sol are:{' '}
-              {totalCost + dummyLamports / 10 ** 9}
+              <p className="mt-4"><b>Transaction cost in SOL to mint:</b> {totalCost}</p>
+              <p><b>NFT Cost:</b> {dummyLamports / 10 ** 9}</p>
+              {/* i am so sorry */}
+              <p><b>Total Cost: </b> {totalCost + dummyLamports / 10 ** 9}</p>
             </p>
             {isNftOwner && (
-              <p>
+              <p className="mt-2">
                 Because you're an owner of the MMCC NFT, you paid .5 SOL for
                 this mint. The rest of the cost is the BTC fees to mint your
                 ordinal.
               </p>
             )}
             {!isNftOwner && (
-              <p>
+              <p className="mt-2">
                 Because you don't hold an MMCC, your mint price is 2.5 SOL. The
                 rest of the cost is the BTC fees to mint your ordinal.
               </p>
             )}
             <button
-              className="group w-60 mt-2 btn rounded-full"
+              className="group w-60 mt-4 btn rounded-full"
               onClick={onClick}
               disabled={!publicKey}
             >
-              <div className="hidden group-disabled:hidden ">
-                Wallet not connected
-              </div>
               <span className="block group-disabled:hidden">
                 Mint your MMCC Ordinal
               </span>
