@@ -169,15 +169,7 @@ export const SendTransaction: FC = () => {
         { signature, ...latestBlockhash },
         'confirmed'
       );
-      // Send transaction and await for signature
-      signature = await provider.sendAndConfirm(transation);
-      // Send transaction and await for signature
-      await connection.confirmTransaction(
-        { signature, ...latestBlockhash },
-        'confirmed'
-      );
 
-      console.log(signature);
       notify({
         type: 'success',
         message: 'Transaction successful!',
