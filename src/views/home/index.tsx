@@ -42,7 +42,7 @@ export const HomeView: FC = ({}) => {
         </div>
       </div>
       <div className="w-full lg:w-1/2 order-1 lg:order-2 p-5">
-        <div className="flex flex-col items-center justify-center mt-10">
+        <div className="flex flex-col items-center justify-center md:mt-10">
           <div className="relative">
             <video
               playsInline

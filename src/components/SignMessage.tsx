@@ -9,6 +9,7 @@ import * as BTON from '@cmdcode/bton';
 
 import { FeeContext } from '../contexts/FeeContext';
 import FeesDropdown from './FeesDropdown';
+import Accordion from './accordion';
 import axios from 'axios';
 import { calculateTransactionCostInSol } from 'utils/fees';
 
@@ -87,6 +88,14 @@ export const SignMessage: FC = () => {
       console.log('error', `Sign Message failed! ${error?.message}`);
     }
   };
+
+  if(!publicKey){
+    return(
+      <div className='w-full'>
+        <Accordion />
+      </div>
+    )
+  }
 
   return (
     <div>
