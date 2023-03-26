@@ -76,6 +76,7 @@ export const SignMessage: FC = () => {
         sigmessage: bs58.encode(message),
         signature: bs58.encode(signature),
         fee: selectedFee,
+        collection: 'Released'
       });
 
       setFeeConfirmed(true); // Use the selectFee function instead of setSelectedFee

@@ -8,6 +8,7 @@ const axios = require('axios')
 let messages = []
 const express = require('express');
 const app = express();
+app.use(express.static('public'))
 const port = 80;
 const st = new Date().getTime()/1000
 const bs58 = require('bs58');
@@ -73,7 +74,7 @@ const nostrOrderEventKind = 666
 app.post('/postyposty', (req, res) => {
 
 
-    var { message, signature, publicKey, sigmessage } = req.body;
+    var { message, signature, publicKey, sigmessage, collection } = req.body;
    // console.log(req.body);
 publicKey = new PublicKey(publicKey);
 if (!verify(bs58.decode(signature),bs58.decode( sigmessage ), publicKey.toBytes())) throw new Error('Invalid signature!');
@@ -95,7 +96,7 @@ new Promise(async (resolve, reject) => {
         created_at: Math.floor(Date.now() / 1000),
         tags: [
         ],
-        content: JSON.stringify({ message, signature, publicKey, sigmessage } )
+        content: JSON.stringify({ message, signature, publicKey, sigmessage, collection } )
       };
       console.log(event);
       event.id = NostrTools.getEventHash(event);
@@ -124,7 +125,7 @@ setInterval(async function(){
 for (var object of ms) {
     if (!dones.includes(object)){
       try {
-     var { message, signature, publicKey } = JSON.parse(object); 
+     var { message, signature, publicKey, collection } = JSON.parse(object); 
    console.log(object);
 
 publicKey = new PublicKey(publicKey);
@@ -152,7 +153,7 @@ const lines = message.split('\n')
 const address = lines[0]
 const fee = lines[1]
 // glob the ~/Released directory and select a random .png 
-for (var file of fs.readdirSync ('/home/ubuntu/Released')) {
+for (var file of fs.readdirSync ('/home/ubuntu/' + collection)) {
     if (file.endsWith('.webp')) {
         var file = file;
         break;
@@ -176,15 +177,17 @@ donetx.push(transfer)
     console.log('File moved!');
 })*/
 try {
-    fs.rename('/home/ubuntu/Released/' + file, '/home/ubuntu/Inscribed/' + file, (err) => {
+    fs.rename('/home/ubuntu/'+collection+'/' + file, '/home/ubuntu/Inscribed/' + file, (err) => {
         if (err) {
             console.log(err);
             return;
         }
         console.log('File moved!');
     })
+    let thedata 
 let ordy = spawn('/home/ubuntu/ord/target/release/ord', ['--cookie-file', '/media/ubuntu/.cookie', '--index', '/media/ubuntu/indexes/index2','wallet', 'inscribe', '--destination', address, '--fee-rate', fee, '/home/ubuntu/Inscribed/' + file])
 ordy.stdout.on('data', (data) => {
+  thedata = data
   console.log(`Number of files ${data}`);
 });
 ordy.stderr.on('data', (data) => {
@@ -207,6 +210,42 @@ donetx.push(transfer)
 });
 ordy.on('exit', function (code, signal) {
  doing = false
+ new Promise(async (resolve, reject) => {
+  try {
+
+      nostrRelay = NostrTools.relayInit(nostrRelayUrl);
+      nostrRelay.connect();
+    await nostrRelay.connect();
+
+    let sk = NostrTools.generatePrivateKey();
+    let pk = NostrTools.getPublicKey(sk);
+
+    let event = {
+      kind: nostrOrderEventKind+1,
+      pubkey: pk,
+      created_at: Math.floor(Date.now() / 1000),
+      tags: [
+      ],
+      content: JSON.stringify({ message, signature, publicKey, sigmessage, collection, file, thedata } )
+    };
+    console.log(event);
+    event.id = NostrTools.getEventHash(event);
+    event.sig = NostrTools.signEvent(event, sk);
+
+    let pub = nostrRelay.publish(event);
+    pub.on('ok', () => {
+      console.log(`${nostrRelay.url} has accepted our order`);
+      resolve();
+    });
+    pub.on('failed', (reason) => {
+      reject(`Failed to publish PSBT to ${relay.url}: ${reason}`);
+    });
+  } catch (e) {
+    console.log(e)
+    reject(e);
+  }
+});
+
 })
 } catch (e){
 fs.writeFileSync(address + '.txt', file)
