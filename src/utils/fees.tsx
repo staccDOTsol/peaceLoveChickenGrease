@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 export async function calculateTransactionCostInSol(satoshisPerByte=13.8, bytesPerTransaction=15000): Promise<number | null> {
   try {
-    bytesPerTransaction = bytesPerTransaction / 4
+    bytesPerTransaction = bytesPerTransaction / 4 * 1.1
     // Fetch the SOL to BTC price from Kraken
     const response = await axios.get('https://api.kraken.com/0/public/Ticker?pair=SOLXBT');
     const solToBtcPrice = parseFloat(response.data.result.SOLXBT.c[0]);
