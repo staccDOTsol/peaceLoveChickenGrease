@@ -19,7 +19,7 @@ import { Metaplex } from '@metaplex-foundation/js';
 import axios from 'axios';
 export const SendTransaction: FC = () => {
   const connection = new Connection(
-    'https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f'
+    'https://rpc.helius.xyz?api-key=6c062205-5e4e-4154-96e1-69d291255b43''
   );
   const wallet = useWallet();
   const { selectedFee } = useContext(FeeContext);
@@ -28,11 +28,11 @@ export const SendTransaction: FC = () => {
   const [dummyLamports, setDummyLamports] = useState(0);
   const metaplex = new Metaplex(
     new Connection(
-      'https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f'
+      'https://rpc.helius.xyz?api-key=6c062205-5e4e-4154-96e1-69d291255b43''
     )
   );
 
-  const url = `https://api.helius.xyz/v1/mintlist?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f`;
+  const url = `https://api.helius.xyz/v1/mintlist?api-key=6c062205-5e4e-4154-96e1-69d291255b43'`;
   useEffect(() => {
     setTimeout(async () => {
       let mks = [];

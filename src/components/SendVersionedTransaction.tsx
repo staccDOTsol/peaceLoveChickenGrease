@@ -4,7 +4,7 @@ import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
 
 export const SendVersionedTransaction: FC = () => {
-    const connection = new Connection("https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f");
+    const connection = new Connection("https://rpc.helius.xyz?api-key=6c062205-5e4e-4154-96e1-69d291255b43");
     const { publicKey, sendTransaction } = useWallet();
 
     const onClick = useCallback(async () => {

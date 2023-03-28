@@ -48,7 +48,7 @@ const NotificationList = () => {
 
 const Notification = ({ type, message, description, txid, onHide }) => {
   const connection = new Connection(
-    'https://rpc.helius.xyz?api-key=8913a285-a5ef-4c35-8d80-03fb276eff2f'
+    'https://rpc.helius.xyz?api-key=6c062205-5e4e-4154-96e1-69d291255b43''
   );
   const { networkConfiguration } = useNetworkConfiguration();
 
