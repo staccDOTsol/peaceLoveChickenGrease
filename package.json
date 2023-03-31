@@ -11,7 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cmdcode/bton": "^1.0.5",
+    "@cmdcode/bton": "^1.0.6",
     "@coral-xyz/anchor": "^0.27.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

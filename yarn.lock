@@ -122,20 +122,20 @@
     "@chainsafe/persistent-merkle-tree" "^0.4.2"
     case "^1.6.3"
 
-"@cmdcode/bton@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@cmdcode/bton/-/bton-1.0.5.tgz#1e57af96db0e7cb7834d78ebf5708af473f8e711"
-  integrity sha512-NxuJikVu8D/MygVpVXmX/9cquG1D0OocHBGWRuy3KmqEsnCFXY5EcSzSI38jPWSfdKMgqRyuHK6tb88VhymHxg==
+"@cmdcode/bton@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@cmdcode/bton/-/bton-1.0.6.tgz#dedbb14f6b722e6fd5beab5fa92cdc5c85e4e2f8"
+  integrity sha512-cbL432RCFLbhLgphcYXvNIG8Em47QTjGL4Cog2S5trXmOkKoWQj5j9BwbIts/F5UFwzF0dcSt2vkrwoEW6fJGQ==
   dependencies:
-    "@cmdcode/buff-utils" "^1.5.2"
-    "@cmdcode/crypto-utils" "^1.6.0"
+    "@cmdcode/buff-utils" "^1.5.6"
+    "@cmdcode/crypto-utils" "^1.6.4"
 
-"@cmdcode/buff-utils@^1.5.2":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@cmdcode/buff-utils/-/buff-utils-1.5.4.tgz#067332ff1442f03ea495893255fdaf35ad37ee13"
-  integrity sha512-A79H+zJJtHKTrBeNx3Mjo19kzgv/NkuwvRYSooA0Jfs4EHpbwUK+SP9hHHogTUahav5p5NzjDVi57di5rAZJMQ==
+"@cmdcode/buff-utils@^1.5.2", "@cmdcode/buff-utils@^1.5.6":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@cmdcode/buff-utils/-/buff-utils-1.6.5.tgz#26a46892ca7258d1e58a4b5fcebdef2ddc42b045"
+  integrity sha512-bX0XWplJFwR5Svq9SUne0D3YRUHZD/K+AmBo6Jp6a64uvsxW2rqtG26KfuriVngLif/LrpuoPS8y4ZrX0H15Xw==
 
-"@cmdcode/crypto-utils@^1.6.0":
+"@cmdcode/crypto-utils@^1.6.4":
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/@cmdcode/crypto-utils/-/crypto-utils-1.6.4.tgz#55b4995a605bb0a732ec882c1add03ca807abc62"
   integrity sha512-EF8nqFHFG9fWPa5MIykjDmem15QxZD4LWf1hnDgpgODX4c7pG8mf21sX7ucolqobq0+J4wOZuldYk6s9KLHoVg==
