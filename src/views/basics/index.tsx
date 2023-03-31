@@ -11,7 +11,7 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useUserContext } from "contexts/UserContext";
 
 export const BasicsView: FC = ({ }) => {
-  const url = `https://api.helius.xyz/v1/mintlist?api-key=6c062205-5e4e-4154-96e1-69d291255b43'`
+  const url = `https://api.helius.xyz/v1/mintlist?api-key=6c062205-5e4e-4154-96e1-69d291255b43`
   let mks = []
   let userContext = useUserContext  ()
   const { connected } = useWallet();

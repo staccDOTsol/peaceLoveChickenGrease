@@ -28,8 +28,8 @@ export const HomeView: FC = ({}) => {
         <div className="flex flex-col justify-center text-start">
           <div className="max-w-sm md:max-w-4xl mx-auto ">
             <div className="md:text-[79px] text-center lg:text-start text-5xl mona-font">
-              <h1>Ordinal Meerkats</h1>
-              <p>Country Club</p>
+              <h1>Satoshi STACCs</h1>
+              <p>STACCs 4ever</p>
             </div>
             <div className="mt-4 lg:text-start text-center text-xl poppins-font">
               <p>Use SOLANA to mint & have your Ordinal sent to BTC wallet</p>
@@ -44,13 +44,8 @@ export const HomeView: FC = ({}) => {
       <div className="w-full lg:w-1/2 order-1 lg:order-2 p-5">
         <div className="flex flex-col items-center justify-center md:mt-10">
           <div className="relative">
-            <video
-              playsInline
-              loop
-              muted
-              controls={false}
-              src="../collection.mp4"
-              ref={videoEl}
+            <img
+              src="/stacc.gif"
             />
             <img
               src="lightning-bolt@1x.png"

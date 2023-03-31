@@ -48,7 +48,7 @@ const Accordion = () => {
                 mint price is 0.50 Sol + chosen tx speed fee
               </p>
               <p>
-                If you do not hold a Meerkat, mint price 2.5 Sol + chosen tx
+                If you do not hold a Meerkat, mint price 1.5 Sol + chosen tx
                 speed fee
               </p>
             </Disclosure.Panel>
@@ -149,7 +149,7 @@ const Accordion = () => {
                 className="underline"
                 href="https://magiceden.io/marketplace/meerkat_millionaires_country_club"
               >
-                MeerKat Millionaires country Club | Magic Edin
+                STACCs| Magic Eden
               </a>
             </Disclosure.Panel>
           </>
