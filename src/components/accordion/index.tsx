@@ -37,18 +37,18 @@ const Accordion = () => {
             </Disclosure.Button>
             <Disclosure.Panel className="px-6 pt-4 pb-2 text-sm text-orange-500 break-words space-y-3">
               <p>
-                If you hold an OG Meerkat{' '}
+                If you hold an OG Stacc{' '}
                 <a
                   className="underline"
-                  href="https://magiceden.io/marketplace/meerkat_millionaires_country_club"
+                  href="https://magiceden.io/marketplace/stacc"
                 >
-                  (https://magiceden.io/marketplace/meerkat_millionaires_country_club)
+                  (https://magiceden.io/marketplace/stacc)
                 </a>
                 {'\n'}
                 mint price is 0.50 Sol + chosen tx speed fee
               </p>
               <p>
-                If you do not hold a Meerkat, mint price 1.5 Sol + chosen tx
+                If you do not hold a Stacc, mint price 1.5 Sol + chosen tx
                 speed fee
               </p>
             </Disclosure.Panel>
@@ -147,9 +147,9 @@ const Accordion = () => {
             <Disclosure.Panel className="px-6 pt-4 pb-2 text-sm text-orange-500">
               <a
                 className="underline"
-                href="https://magiceden.io/marketplace/meerkat_millionaires_country_club"
+                href="https://magiceden.io/marketplace/stacc"
               >
-                STACCs| Magic Eden
+                STACCs | Magic Eden
               </a>
             </Disclosure.Panel>
           </>
